@@ -1,0 +1,595 @@
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600&display=swap');
+
+:root{
+  --primary-color: #2e2e2e;
+  --secondary-color: #fff;
+  --third-color: #b74cf5;
+}
+
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+body{
+  font-family: 'Titillium Web', sans-serif;
+  background-color: var(--primary-color);
+}
+
+.app{
+  background-color:var(--primary-color) ;
+}
+
+
+/* HEADER */
+.logoLink{
+  text-decoration: none;
+}
+
+.logo{ 
+  color: var(--third-color);
+  padding: 15px;
+}
+
+.headerItems{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.headerItems button{
+  background-color: var(--third-color);
+  color: var(--secondary-color);
+  border: none;
+  padding: 7px;
+  font-size: 1.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.2);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navDropdown{
+  position: absolute;
+  left: -110px;
+  top: 50px;
+}
+
+.navDropdownItems{
+  background-color: var(--secondary-color);
+  width: 160px;
+  padding: 5px;
+  border-radius: 5px;
+  box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease;
+}
+
+.navDropdownItems.show{
+  pointer-events: all;
+  opacity: 1;
+}
+
+.navDropdownItems.hide{
+  pointer-events: none;
+  opacity: 0;
+}
+
+.navDropdownItems a{
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+  text-decoration: none;
+  font-size: 1.3rem;
+  border-radius: 3px;
+  color: var(--third-color);
+  height: 30px;
+}
+
+.navDropdownItems a:hover{
+  opacity: 0.85;
+}
+
+.navDropdownItems a .navIcon{
+  margin-right: 5px;
+  font-size: 2rem;
+}
+
+/* SEARCH BAR */
+
+.searchBar{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin:40px 0;
+}
+
+.searchBar input{
+  background-color: transparent;
+  border: var(--secondary-color) 1px solid;
+  padding: 10px;
+  width: 500px;
+  border-radius: 5px;
+  color: #fff;
+}
+
+.searchBar input::placeholder{
+  color: var(--secondary-color);
+}
+
+.searchBar input:focus{
+  outline-color: var(--third-color);
+}
+
+
+
+/* COINS */
+
+
+.coins{
+  background-color: var(--third-color);
+  color: var(--secondary-color);
+  border-radius: 5px;
+  padding: 20px;
+  margin: 20px 2px !important;
+  width: 375px;
+  height: 350px;
+  box-shadow: 0 0 15px 3px rgba(183, 76, 245, 0.5);
+}
+
+
+.coinsItems .coinTitle{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid violet;
+
+}
+
+.coinTitle p{
+  font-size: 0.9rem;
+}
+
+.coinsItems h2{
+  font-size: 1.9rem;
+}
+
+.coinsItems .marketCap{
+  margin: 20px 0;
+  color: var(--primary-color);
+  background-color: var(--secondary-color);
+  border-radius: 5px;
+  padding: 5px;
+  box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.2);
+}
+
+.coinsItems .volume{
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  border-radius: 5px;
+  padding: 5px;
+  box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.2);
+}
+
+.coinsItems .coinPriceDiv{
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--secondary-color);
+  width: 55%;
+  margin: 10px auto;
+  padding-right: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.2);
+}
+
+.coinsItems .coinPrice{
+  font-size: 1.2rem;
+  margin: 5px 0;
+  padding: 0 10px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.coinsItems .moreInfoDiv{
+  text-align: left;
+  margin: 2px 0;
+}
+
+.coinsItems a{
+  text-decoration: underline;
+  color: var(--primary-color);
+  cursor: pointer;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+}
+
+.loading{
+  margin: 20px auto;
+}
+
+.positive{
+  color: #00FF00;
+}
+
+.negative{
+  color: red;
+}
+
+.noCoins{
+  color: var(--third-color);
+  text-align: center;
+}
+
+.viewChart{
+  text-align: center;
+}
+
+.viewChartBtn{
+  background-color: #fff;
+  color: #000;
+  padding: 6px 15px;
+  font-size: 1rem;
+  border: none;
+  margin-top: 20px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 5px;
+  box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.2);
+}
+
+.viewChartBtn:hover{
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+}
+
+.viewChartBtn:active{
+  transform: scale(0.98);
+}
+
+/* CURRENTCOININFO */
+
+.currentCoinInfoItems{
+  border: 1px solid var(--third-color);
+  padding: 10px;
+  border-radius: 5px;
+  margin: 60px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.currentCoinInfoItems table{
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  text-align: center;
+  font-size: 1.1rem;
+  color: #fff;
+}
+
+.currentCoinInfoItems table .symbol{
+  color: lightgray;
+  font-size: 0.7rem;
+  margin: 0 2px;
+}
+
+.currentCoinInfoItems table thead tr th{
+  padding: 5px 0;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.currentCoinInfoItems table tbody tr td{
+  padding: 10px 0;
+}
+
+/* SWITCH CHART DATA */
+
+.switchChartDataItems{
+  display: flex;
+  justify-content: end;
+}
+
+.switchChartDataItems button{
+  background-color: transparent;
+  border: 1px solid var(--secondary-color);
+  margin: 0 3px;
+  font-size: 1.02rem;
+  padding: 5px;
+  cursor: pointer;
+  color: var(--secondary-color);
+  border-radius: 5px;
+  box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.2);
+}
+
+.switchChartDataItems button.active{
+  background-color: var(--third-color);
+  color: var(--secondary-color);
+}
+
+.switchChartDataItems button.notActive{
+  background-color: var(--primary-color);
+}
+
+.twentyFourHourChart{
+  height: 90vh;
+}
+
+.twentyFourHourChartItems{
+  height: 90vh;
+}
+
+.twentyFourHourChart.showChart{
+  display: block;
+}
+
+.twentyFourHourChart.hideChart{
+  display: none;
+}
+
+.sevenDayChart{
+  height: 90vh;
+}
+
+.sevenDayChartItems{
+  height: 90vh;
+}
+
+.sevenDayChart.showChart{
+  display: block;
+}
+
+.sevenDayChart.hideChart{
+  display: none;
+}
+
+.thirtyDayChart{
+  height: 90vh;
+}
+
+.thirtyDayChartItems{
+  height: 90vh;
+}
+
+.thirtyDayChart.showChart{
+  display: block;
+}
+
+.thirtyDayChart.hideChart{
+  display: none;
+}
+
+.threeMonthChart{
+  height: 90vh;
+}
+
+.threeMonthChartItems{
+  height: 90vh;
+}
+
+.threeMonthChart.showChart{
+  display: block;
+}
+
+.threeMonthChart.hideChart{
+  display: none;
+}
+
+.oneYearChart{
+  height: 90vh;
+}
+
+.oneYearChartItems{
+  height: 90vh;
+}
+
+.oneYearChart.showChart{
+  display: block;
+}
+
+.oneYearChart.hideChart{
+  display: none;
+}
+
+
+/* CHARTS INFO */
+
+.sevenDayCapitalHistoryId{
+  text-align: center;
+  color: #fff;
+  margin: 50px auto;
+  font-size: 3rem;
+}
+
+/* MY ASSETS */
+
+ 
+.myAssets .myBalance{
+  color: var(--secondary-color);
+  margin-bottom: 30px;
+  font-size: 2.2rem;
+}
+
+.myAssetsCoins{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid var(--third-color);
+  margin: 10px 0;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.myAssetsCoinsTitle{
+  display: flex;
+  align-items: center;
+}
+
+.myAssetsCoins h2{
+  font-size: 1.8rem;
+  margin-right: 3px;
+  color: var(--secondary-color);
+}
+
+.myAssetsCoins h4{
+  color: lightgray;
+}
+
+.myAssetsCoins p{
+  font-size: 1.5rem;
+  color: var(--secondary-color);
+}
+
+
+
+
+/* UTILITIES */
+.container{
+  max-width: 1400px;
+  padding: 0 40px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+
+
+@media(max-width: 968px){
+  .searchBar input{
+    width: 300px;
+  }
+
+  .coins{
+    width: 275px;
+  }
+
+  .coinsItems h2{
+    font-size: 1.5rem;
+  }
+
+  .coinsItems .coinPriceDiv{
+    width: 100%;
+  }
+
+  .currentCoinInfoItems{
+    border: none;
+  }
+
+  .sevenDayChart{
+    height: 60vh;
+  }
+
+  .twentyFourHourChart{
+    height: 60vh;
+  }
+
+  .thirtyDayChart{
+    height: 60vh;
+  }
+
+  .threeMonthChart{
+    height: 60vh;
+  }
+
+  .oneYearChart{
+    height: 60vh;
+  }
+
+  /* TABLE */
+
+  	/* Force table to not be like tables anymore */
+	table, thead, tbody, th, td, tr { 
+		display: block; 
+	}
+
+	
+	/* Hide table headers (but not display: none;, for accessibility) */
+	thead tr { 
+		display: none;
+	}
+	
+	tr { 
+    border: 1px solid var(--third-color);
+   }
+	
+	td { 
+		border: none;
+		position: relative;
+    text-align: right;
+    border-bottom: 1px solid var(--third-color);
+	}
+
+  td p{
+    padding-right: 10px;
+  }
+	
+	td:before { 
+		position: absolute;
+		top: 6px;
+		left: 10px;
+	}
+
+  td:nth-of-type(1):before { content: "Rank"; }
+	td:nth-of-type(2):before { content: "Name"; }
+	td:nth-of-type(3):before { content: "Price"; }
+	td:nth-of-type(4):before { content: "24H %"; color: #fff; }
+	td:nth-of-type(5):before { content: "MCap"; }
+	td:nth-of-type(6):before { content: "Supply"; }
+}
+
+@media(max-width: 768px){
+  .sevenDayChart{
+    height: 50vh;
+  }
+
+  .twentyFourHourChart{
+    height: 50vh;
+  }
+
+  .thirtyDayChart{
+    height: 50vh;
+  }
+
+  .threeMonthChart{
+    height: 50vh;
+  }
+
+  .oneYearChart{
+    height: 50vh;
+  }
+}
+
+@media(max-width: 668px){
+  .sevenDayChart{
+    height: 40vh;
+  }
+
+  .twentyFourHourChart{
+    height: 40vh;
+  }
+
+  .thirtyDayChart{
+    height: 40vh;
+  }
+
+  .threeMonthChart{
+    height: 40vh;
+  }
+
+  .oneYearChart{
+    height: 40vh;
+  }
+}
+
+
+
+
