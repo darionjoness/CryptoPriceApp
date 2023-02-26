@@ -27,6 +27,7 @@ function App() {
   const [currentCoinInfoLoading, setCurrentCoinInfoLoading] = useState<boolean>(false)
   const [currentChartDataTime, setCurrentChartDataTime] = useState<number>(0)
   const [timeInterval, setTimeInterval] = useState<string>('h')
+  const [changeSection, setChangeSection] = useState<boolean>(false)
 
 
   useEffect(() => {
@@ -143,42 +144,43 @@ function App() {
     setTimeInterval('d')
   }
 
+  const showHome = () => {
+    setChangeSection(false)
+  }
+
+  const showAssets = () => {
+    setChangeSection(true)
+  }
+
   return (
     <div className="app container">
-      <Header />
+      <Header changeSection={showHome} changeSectionTwo={showAssets} />
 
       <SearchBar onChange={(e) => setSearchInput(e.target.value)} />
 
-      <Routes>
-        <Route path='/' element={
-          <div>
+      {changeSection === false && <div className="sectionCoinInfo">
+        {isLoading ? <Loading type='spokes' color='#b74cf5' /> : <Coins coinData={coinData} searchInput={searchInput} onClick={clickChangeCoinHistory}/>}
 
-          {isLoading ? <Loading type='spokes' color='#b74cf5' /> : <Coins coinData={coinData} searchInput={searchInput} onClick={clickChangeCoinHistory}/>}
+        {coinsFetched ? <CurrentCoinInfo coinData={coinData} currentDataRank={currentDataRank} currentCoinInfoLoading={currentCoinInfoLoading} /> : ''}
 
-          {coinsFetched ? <CurrentCoinInfo coinData={coinData} currentDataRank={currentDataRank} currentCoinInfoLoading={currentCoinInfoLoading} /> : ''}
+        <SwitchChartData show1Year={show1Year} show3Month={show3Month} show30Day={show30Day} show7Day={show7Day} currentChartDataTime={currentChartDataTime} show24Hour={show24Hour} />
 
-          <SwitchChartData show1Year={show1Year} show3Month={show3Month} show30Day={show30Day} show7Day={show7Day} currentChartDataTime={currentChartDataTime} show24Hour={show24Hour} />
+        <SevenDayChart currentCoinInfoLoading={currentCoinInfoLoading} currentChartDataTime={currentChartDataTime} byDayHistory={byDayHistory} coinHistoryId={coinHistoryId} />
 
-          <SevenDayChart currentCoinInfoLoading={currentCoinInfoLoading} currentChartDataTime={currentChartDataTime} byDayHistory={byDayHistory} coinHistoryId={coinHistoryId} />
+        <TwentyFourHourChart currentCoinInfoLoading={currentCoinInfoLoading} coinHistoryId={coinHistoryId} currentChartDataTime={currentChartDataTime} byDayHistory={byDayHistory} />
 
-          <TwentyFourHourChart currentCoinInfoLoading={currentCoinInfoLoading} coinHistoryId={coinHistoryId} currentChartDataTime={currentChartDataTime} byDayHistory={byDayHistory} />
+        <ThirtyDayChart currentCoinInfoLoading={currentCoinInfoLoading} currentChartDataTime={currentChartDataTime} byDayHistory={byDayHistory} coinHistoryId={coinHistoryId} />
 
-          <ThirtyDayChart currentCoinInfoLoading={currentCoinInfoLoading} currentChartDataTime={currentChartDataTime} byDayHistory={byDayHistory} coinHistoryId={coinHistoryId} />
+        <ThreeMonthChart currentCoinInfoLoading={currentCoinInfoLoading} currentChartDataTime={currentChartDataTime} byDayHistory={byDayHistory} coinHistoryId={coinHistoryId} />
 
-          <ThreeMonthChart currentCoinInfoLoading={currentCoinInfoLoading} currentChartDataTime={currentChartDataTime} byDayHistory={byDayHistory} coinHistoryId={coinHistoryId} />
+        <OneYearChart currentCoinInfoLoading={currentCoinInfoLoading} currentChartDataTime={currentChartDataTime} byDayHistory={byDayHistory} coinHistoryId={coinHistoryId} />
+      </div>}
 
-          <OneYearChart currentCoinInfoLoading={currentCoinInfoLoading} currentChartDataTime={currentChartDataTime} byDayHistory={byDayHistory} coinHistoryId={coinHistoryId} />
+      {changeSection && <div className="sectionMyAssets">
+        {isLoading ? <Loading type='spokes' color='#b74cf5' />  : <MyAssets searchInput={searchInput} coinData={coinData} />}
+      </div>}
 
-          </div>
-        } />
 
-        <Route path='/myassets' element={
-          <div>
-            {isLoading ? <Loading type='spokes' color='#b74cf5' />  : <MyAssets searchInput={searchInput} coinData={coinData} />}
-          </div>
-        } />
-      </Routes>
-      
     </div>
   )
 }

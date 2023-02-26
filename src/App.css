@@ -39,7 +39,7 @@ body{
   align-items: center;
 }
 
-.headerItems button{
+.headerItems .navBtn{
   background-color: var(--third-color);
   color: var(--secondary-color);
   border: none;
@@ -79,7 +79,7 @@ body{
   opacity: 0;
 }
 
-.navDropdownItems a{
+.navDropdownItems button{
   display: flex;
   align-items: center;
   margin: 20px 0;
@@ -88,13 +88,16 @@ body{
   border-radius: 3px;
   color: var(--third-color);
   height: 30px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
 }
 
-.navDropdownItems a:hover{
+.navDropdownItems button:hover{
   opacity: 0.85;
 }
 
-.navDropdownItems a .navIcon{
+.navDropdownItems button .navIcon{
   margin-right: 5px;
   font-size: 2rem;
 }
