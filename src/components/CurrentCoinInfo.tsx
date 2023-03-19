@@ -26,7 +26,7 @@ const CurrentCoinInfo = ({ coinData, currentDataRank, currentCoinInfoLoading }: 
    
 
   return (
-    <div className='currentCoinInfo'>
+    <div className='currentCoinInfo container'>
         {currentCoinInfoLoading ? <Loading type={'cylon'} color={'#b74cf5'} /> : <div className="currentCoinInfoItems">
             <table>
                 <thead>

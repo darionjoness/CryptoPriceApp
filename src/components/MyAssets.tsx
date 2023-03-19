@@ -38,7 +38,7 @@ const MyAssets = ({ coinData, searchInput }: MyAssetsProps) => {
 
 
   return (
-    <div className='myAssets'>
+    <div className='myAssets container'>
         <h1 className='myBalance'>My Balance: $0.00</h1>
             {newCoinData.length > 0 ? <div className="myAssetsItems">
                     {newCoinData.map((coin, idx) => (

@@ -1,5 +1,6 @@
 import React from 'react'
 import { AiOutlineHome, AiOutlineLineChart } from "react-icons/ai";
+import { BiCoinStack } from "react-icons/bi";
 
 interface NavDropdownProps {
     navDropdown: boolean
@@ -12,7 +13,7 @@ const NavDropdown = ({ navDropdown, changeSection, changeSectionTwo }: NavDropdo
   return (
     <div className='navDropdown'>
         <div className={`navDropdownItems ${navDropdown ? 'show' : 'hide'}`}>
-            <button onClick={changeSection}><AiOutlineHome className='navIcon' />Home</button>
+            <button onClick={changeSection}><BiCoinStack className='navIcon' />View Coins</button>
             <button onClick={changeSectionTwo}><AiOutlineLineChart className='navIcon' />My Assets</button>
         </div>
     </div>

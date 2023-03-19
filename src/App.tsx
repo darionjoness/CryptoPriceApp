@@ -13,6 +13,7 @@ import ThirtyDayChart from './components/ThirtyDayChart'
 import ThreeMonthChart from './components/ThreeMonthChart'
 import OneYearChart from './components/OneYearChart'
 import MyAssets from './components/MyAssets'
+import Showcase from './components/Showcase'
 
 // API Data is about a day off, it is not up to date to the exact hour
 
@@ -153,8 +154,9 @@ function App() {
   }
 
   return (
-    <div className="app container">
-      <Header changeSection={showHome} changeSectionTwo={showAssets} />
+    <div className="app">
+
+      <Showcase changeSection={showHome} changeSectionTwo={showAssets} />
 
       <SearchBar onChange={(e) => setSearchInput(e.target.value)} />
 

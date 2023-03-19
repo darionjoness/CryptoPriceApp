@@ -11,7 +11,7 @@ interface SwitchChartDataProps {
 
 const SwitchChartData = ({ currentChartDataTime, show24Hour, show7Day, show30Day, show3Month, show1Year }: SwitchChartDataProps) => {
   return (
-    <div className='switchChartData'>
+    <div className='switchChartData container'>
         <div className="switchChartDataItems">
             <button onClick={show24Hour} 
             className={`24h 

@@ -159,7 +159,7 @@ const TwentyFourHourChart = ({ currentChartDataTime, byDayHistory, coinHistoryId
   }
     
   return (
-    <div className={`twentyFourHourChart 
+    <div className={`twentyFourHourChart container 
     ${currentChartDataTime === 0 ? 'showChart' : 'hideChart'}`}>
         <div className="twentyFourHourChartItems">
             {currentCoinInfoLoading ? <Loading type={'cylon'} color={'#b74cf5'} /> : <Line options={options} data={data} plugins={[legendMargin]} />}

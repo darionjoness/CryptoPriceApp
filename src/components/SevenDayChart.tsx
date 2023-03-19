@@ -147,7 +147,7 @@ const SevenDayChart = ({ byDayHistory, coinHistoryId, currentChartDataTime, curr
   }
     
   return (
-    <div className={`sevenDayChart 
+    <div className={`sevenDayChart container 
     ${currentChartDataTime == 1 
     ? 'showChart' 
     : 'hideChart'

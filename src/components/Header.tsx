@@ -19,7 +19,7 @@ const Header = ({ changeSection, changeSectionTwo }: HeaderProps) => {
 
 
   return (
-    <div className='header'>
+    <div className='header container'>
         <div className="headerItems">
             <a className='logoLink' href="/"><h1 className='logo'>CrytpoPrice.io</h1></a>
             <div className='navBtn' onClick={showNavDropdown}>

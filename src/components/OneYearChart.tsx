@@ -140,7 +140,7 @@ const options = {
 
 
   return (
-    <div className={`oneYearChart 
+    <div className={`oneYearChart container 
     ${currentChartDataTime === 4 
     ? 'showChart' 
     : 'hideChart'}`}>

@@ -142,7 +142,7 @@ const options = {
 }
 
   return (
-    <div className={`threeMonthChart 
+    <div className={`threeMonthChart container
     ${currentChartDataTime === 3 
     ? 'showChart' 
     : 'hideChart'}`}>

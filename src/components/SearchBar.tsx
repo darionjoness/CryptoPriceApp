@@ -6,7 +6,7 @@ interface SearchBarProps {
 
 const SearchBar = ({ onChange }: SearchBarProps) => {
   return (
-    <div className='searchBar'>
+    <div id='search' className='searchBar'>
         <input onChange={onChange} type="text" placeholder={`🔍  Search Coin`} />
     </div>
   )
