@@ -58,7 +58,7 @@ html, body{
   display: flex;
   justify-content: center;
   align-items: center;
-  position: fixed;
+  position: relative;
   right: 20px;
   z-index: 100;
 }
