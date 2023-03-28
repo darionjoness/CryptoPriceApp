@@ -11,9 +11,10 @@ interface AddFundsTypes {
   inputSet: React.FormEventHandler
   closeAddFunds: React.MouseEventHandler
   addFundsErr: boolean
+  negativeNumErr: boolean
 }
 
-const AddFunds = ({ showAddFunds, amountInput, controlAmount, completeAddFunds, nameInput, inputSet, closeAddFunds, addFundsErr }: AddFundsTypes) => {
+const AddFunds = ({ showAddFunds, amountInput, controlAmount, completeAddFunds, nameInput, inputSet, closeAddFunds, addFundsErr, negativeNumErr }: AddFundsTypes) => {
 
 
   return (
@@ -28,6 +29,7 @@ const AddFunds = ({ showAddFunds, amountInput, controlAmount, completeAddFunds, 
           <input value={amountInput} onChange={(e) => controlAmount(e)} type="number" placeholder='Amount' />
         </div>
         {addFundsErr ? <p className='addFundsErr'>Please fill in both inputs!</p> : ''}
+        {negativeNumErr ? <p className='negNumErr'>Please type in a positive number</p> : ''}
         <div className="confirmAddFundsBtn">
           <button onClick={completeAddFunds}>Add Funds</button>
         </div>

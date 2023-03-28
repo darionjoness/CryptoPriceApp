@@ -15,6 +15,7 @@ import OneYearChart from './components/OneYearChart'
 import MyAssets from './components/MyAssets'
 import Sidebar from './components/Sidebar'
 import Exchanges from './components/Exchanges'
+import Transactions from './components/Transactions'
 
 // API Data is about a day off, it is not up to date to the exact minute
 
@@ -32,6 +33,7 @@ function App() {
   const [changeSection, setChangeSection] = useState<number>(0)
   const [viewModal, setViewModal] = useState<boolean>(false)
   const [viewSidebar, setViewSidebar] = useState<boolean>(false)
+  const [transactions, setTransactions] = useState<number[]>([])
   // My Assets state
   const [showAddFunds, setShowAddFunds] = useState<boolean>(false)
   const [amount, setAmount] = useState<number>(0)
@@ -40,8 +42,9 @@ function App() {
   const [showConfirmation, setShowConfirmation] = useState<boolean>(false)
   const [nameInput, setNameInput] = useState<string>('')
   const [name, setName] = useState<string>('')
-  const [transactions, setTransactions] = useState<number[]>([])
+
   const [addFundsErr, setAddFundsErr] = useState<boolean>(false)
+  const [negativeNumErr, setNegativeNumErr] = useState<boolean>(false)
 
   useEffect(() => {
     fetchCoins();
@@ -175,8 +178,14 @@ function App() {
     setChangeSection(1)
   }
 
+  // Used to show exchanges
   const showExchanges = () => {
     setChangeSection(2)
+  }
+
+  // Used to show transactions
+  const showTransactions = () => {
+    setChangeSection(3)
   }
 
   // Used to toggle sidebar
@@ -209,7 +218,10 @@ function App() {
   const completeAddFunds = () => {
     if(nameInput == '' || amountInput == ''){
       setAddFundsErr(true)
-    }else{
+    }else if(Number(amountInput) < 0){
+      setNegativeNumErr(true)
+    }
+    else{
       // setAmount to amount + the amountInput made a number, totalAmount
       setAmount(amount + Number(amountInput))
 
@@ -225,6 +237,8 @@ function App() {
       setShowAddFunds(false)
       // Hide error message
       setAddFundsErr(false)
+      // Hide neg number error message
+      setNegativeNumErr(false)
     }
   }
 
@@ -240,6 +254,7 @@ function App() {
 
     // Get an array of transactions
     setTransactions([...transactions, addedAmount])
+    
   }
 
   // Create closeAddFunds function
@@ -250,7 +265,7 @@ function App() {
   return (
     <div className="app">
 
-      <Sidebar showExchanges={showExchanges} menuRef={menuRef} changeSection={changeSection} showAssets={showAssets} showHome={showHome} hideSidebar={showSidebar} viewSidebar={viewSidebar} />
+      <Sidebar showTransactions={showTransactions} showExchanges={showExchanges} menuRef={menuRef} changeSection={changeSection} showAssets={showAssets} showHome={showHome} hideSidebar={showSidebar} viewSidebar={viewSidebar} />
 
       <Header showSidebar={showSidebar} changeSection={showHome} changeSectionTwo={showAssets} />
       
@@ -277,6 +292,7 @@ function App() {
         <Loading type='spokes' color='#b74cf5' />  
         : 
         <MyAssets 
+        negativeNumErr={negativeNumErr}
         addFundsErr={addFundsErr}
         controlName={(e:any) => setNameInput(e.target.value)} 
         closeAddFunds={closeAddFunds} 
@@ -296,6 +312,8 @@ function App() {
       </div>}
 
       {changeSection === 2 && <Exchanges />}
+
+      {changeSection === 3 && <Transactions transactions={transactions} />}
 
     </div>
 

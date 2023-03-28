@@ -108,6 +108,11 @@ input[type=number]::-webkit-outer-spin-button {
   border-bottom: 2px solid var(--third-color);
 }
 
+.viewTransactions.active{
+  color: var(--third-color);
+  border-bottom: 2px solidj var(--third-color);
+}
+
 
 /* HEADER */
 .logoLink{
@@ -582,6 +587,11 @@ input[type=number]::-webkit-outer-spin-button {
   margin-bottom: 5px;
 }
 
+.negNumErr{
+  color: red;
+  margin-bottom: 5px;
+}
+
 
 
 /* FUNDS ADDED */
@@ -663,6 +673,31 @@ input[type=number]::-webkit-outer-spin-button {
   text-align: center;
   color: var(--third-color);
   margin-top: 20px;
+}
+
+/* TRANSACTIONS */
+
+.transactionsHeader{
+  color: #fff;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.transactionsDiv{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #fff;
+  border: 1px solid var(--third-color);
+  margin: 10px 0;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.transactionsEmpty{
+  color: var(--third-color);
+  text-align: center;
+  padding: 0 40px;
 }
 
 

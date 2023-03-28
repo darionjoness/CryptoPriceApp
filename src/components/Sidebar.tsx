@@ -12,9 +12,10 @@ interface SidebarTypes {
     changeSection: number
     menuRef: any
     showExchanges: React.MouseEventHandler
+    showTransactions: React.MouseEventHandler
 }
 
-const Sidebar = ({ viewSidebar, hideSidebar, showHome, showAssets, changeSection, menuRef, showExchanges }: SidebarTypes) => {
+const Sidebar = ({ viewSidebar, hideSidebar, showHome, showAssets, changeSection, menuRef, showExchanges, showTransactions }: SidebarTypes) => {
   return (
     <div ref={menuRef} className={`sidebar ${viewSidebar ? 'show' : 'hide'}`}>
         <button onClick={hideSidebar} className="closeSidebarBtn">
@@ -33,7 +34,7 @@ const Sidebar = ({ viewSidebar, hideSidebar, showHome, showAssets, changeSection
                 <p><FaExchangeAlt /></p>
                 <p>Exchanges</p>
             </div>
-            <div className="sidebarLink viewTransactions">
+            <div onClick={showTransactions} className={`sidebarLink viewTransactions ${changeSection === 3 ? 'active' :''}`}>
                 <p><BiPurchaseTag /></p>
                 <p>Transactions</p>
             </div>
