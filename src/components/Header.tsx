@@ -7,10 +7,11 @@ import NavDropdown from './NavDropdown';
 interface HeaderProps {
   changeSection: (e: React.MouseEvent<HTMLButtonElement>) => void
   changeSectionTwo: (e: React.MouseEvent<HTMLButtonElement>) => void
+  showSidebar: React.MouseEventHandler
 }
 
 
-const Header = ({ changeSection, changeSectionTwo }: HeaderProps) => {
+const Header = ({ changeSection, changeSectionTwo, showSidebar }: HeaderProps) => {
   const [navDropdown, setNavDropdown] = useState<boolean>(false)
 
     const showNavDropdown = () => {
@@ -21,11 +22,10 @@ const Header = ({ changeSection, changeSectionTwo }: HeaderProps) => {
   return (
     <div className='header container'>
         <div className="headerItems">
-            <a className='logoLink' href="/"><h1 className='logo'>CrytpoPrice.io</h1></a>
-            <div className='navBtn' onClick={showNavDropdown}>
-                {navDropdown ? <IoClose className='closeIcon' /> : <FaBars />}
-                <NavDropdown changeSection={changeSection} changeSectionTwo={changeSectionTwo} navDropdown={navDropdown} />
+            <div >
+              <button className="openSidebarBtn"><FaBars onClick={showSidebar} /></button>
             </div>
+            <a className='logoLink' href="/"><h1 className='logo'>CrytpoPrice.io</h1></a>
         </div>
     </div>
   )

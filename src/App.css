@@ -19,8 +19,91 @@ html, body{
   scroll-behavior: smooth;
 }
 
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 .app{
   background-color:var(--primary-color) ;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+  color: #fff;
+  background-color: #141414;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: -150px;
+  height: 100%;
+  padding: 10px;
+  z-index: 5;
+  transition: all 0.3s ease;
+  width: 150px;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.5);
+}
+
+.sidebar.show{
+  transform: translateX(150px);
+}
+
+.sidebarItems{
+  margin-top: 75px;
+  text-align: center;
+}
+
+.sidebarItems p{
+  font-size: 1.25rem;
+  text-align: center;
+}
+
+.closeSidebarBtn{
+  background-color: transparent;
+  color: #fff;
+  border: none;
+  font-size: 2rem;
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+  display: flex;
+  border-radius: 5px;
+  border: 1px solid var(--third-color);
+  transition: all 0.25s ease;
+}
+
+.closeSidebarBtn:hover{
+  background-color: var(--third-color);
+  color: #fff;
+}
+
+.sidebarLink{
+  margin: 20px 0;
+  cursor: pointer;
+  padding-bottom: 10px;
+}
+
+.viewCryptos.active{
+  color: var(--third-color);
+  border-bottom: 2px solid var(--third-color);
+}
+
+.viewWallet.active{
+  color: var(--third-color);
+  border-bottom: 2px solid var(--third-color);
+}
+
+.viewExchange.active{
+  color: var(--third-color);
+  border-bottom: 2px solid var(--third-color);
 }
 
 
@@ -35,136 +118,34 @@ html, body{
 }
 
 .header{
-  height: 200px;
   z-index: 5;
-  position: relative;
 }
 
 .headerItems{
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 50px;
 }
 
-.headerItems .navBtn{
-  background-color: var(--third-color);
-  color: var(--secondary-color);
-  border: none;
-  padding: 7px;
-  font-size: 1.5rem;
-  border-radius: 5px;
-  cursor: pointer;
-  box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.2);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  right: 20px;
-  z-index: 100;
-}
-
-.navDropdown{
-  position: absolute;
-  left: -110px;
-  top: 50px;
-}
-
-.navDropdownItems{
-  background-color: var(--secondary-color);
-  width: 160px;
-  padding: 5px;
-  border-radius: 5px;
-  box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.2);
-  transition: all 0.2s ease;
-}
-
-.navDropdownItems.show{
-  pointer-events: all;
-  opacity: 1;
-}
-
-.navDropdownItems.hide{
-  pointer-events: none;
-  opacity: 0;
-}
-
-.navDropdownItems button{
-  display: flex;
-  align-items: center;
-  margin: 20px 0;
-  text-decoration: none;
-  font-size: 1.3rem;
-  border-radius: 3px;
-  color: var(--third-color);
-  height: 30px;
-  border: none;
+.openSidebarBtn{
   background-color: transparent;
-  cursor: pointer;
-}
-
-.navDropdownItems button:hover{
-  opacity: 0.85;
-}
-
-.navDropdownItems button .navIcon{
-  margin-right: 5px;
-  font-size: 2rem;
-}
-
-/* SHOWCASE */
-
-.showcase{
-  background: url('https://images.unsplash.com/photo-1639322537504-6427a16b0a28?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2532&q=80');
-  height: 100vh;
-  background-repeat: no-repeat;
-  background-size:cover;
-  background-position: center;
-  color: var(--secondary-color);
-}
-
-.showcase::after{
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-.showcaseText{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  margin: 0 auto;
-  border-radius: 5px;
-  padding:20px;
-}
-
-.showcaseText h1{
-  font-size: 3rem;
-  color: var(--third-color);
-  position: relative;
-  z-index: 3;
-}
-
-.showcaseText h2{
-  font-size: 2rem;
-  margin: 10px 0;
-  position: relative;
-  z-index: 3;
-}
-
-.showcaseText a{
   color: #fff;
-  cursor: pointer;
-  margin: 10px 0;
+  border: none;
+  border-radius: 5px;
   font-size: 2rem;
-  position: relative;
-  z-index: 3;
+  cursor: pointer;
+  padding: 5px;
+  display: flex;
+  border: 1px solid var(--third-color);
+  transition: all 0.25s ease;
 }
+
+.openSidebarBtn:hover{
+  background-color: var(--third-color);
+}
+
+
 
 /* SEARCH BAR */
 
@@ -172,7 +153,7 @@ html, body{
   display: flex;
   align-items: center;
   justify-content: center;
-  margin:40px 0;
+  margin-bottom: 15px;
 }
 
 .searchBar input{
@@ -196,88 +177,45 @@ html, body{
 
 /* COINS */
 
+.coinHeader{
+  color: #fff;
+  margin-bottom: 40px;
+  text-align: center;
+}
 
-.coins{
-  background-color: var(--third-color);
-  color: var(--secondary-color);
+
+.coinTable thead tr th{
+  padding-bottom: 20px;
+}
+
+.coinTable{
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  text-align: center;
+  font-size: 1.1rem;
+  color: #fff;
+}
+
+.coinBody tr{
+  border: 1px solid var(--third-color);
   border-radius: 5px;
-  padding: 20px;
-  margin: 20px 2px !important;
-  width: 375px;
-  height: 350px;
-  box-shadow: 0 0 15px 3px rgba(183, 76, 245, 0.5);
+}
+
+.coinBody tr td{
+  padding: 25px 10px;
 }
 
 
-.coinsItems .coinTitle{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid violet;
-
+.coinTitle{
+  font-size: 1.5rem;
 }
 
-.coinTitle p{
+.coinSymbol{
+  color: lightgray;
   font-size: 0.9rem;
 }
 
-.coinsItems h2{
-  font-size: 1.9rem;
-}
-
-.coinsItems .marketCap{
-  margin: 20px 0;
-  color: var(--primary-color);
-  background-color: var(--secondary-color);
-  border-radius: 5px;
-  padding: 5px;
-  box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.2);
-}
-
-.coinsItems .volume{
-  background-color: var(--secondary-color);
-  color: var(--primary-color);
-  border-radius: 5px;
-  padding: 5px;
-  box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.2);
-}
-
-.coinsItems .coinPriceDiv{
-  color: var(--primary-color);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: var(--secondary-color);
-  width: 55%;
-  margin: 10px auto;
-  padding-right: 15px;
-  border-radius: 5px;
-  box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.2);
-}
-
-.coinsItems .coinPrice{
-  font-size: 1.2rem;
-  margin: 5px 0;
-  padding: 0 10px;
-  border-radius: 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  
-}
-
-.coinsItems .moreInfoDiv{
-  text-align: left;
-  margin: 2px 0;
-}
-
-.coinsItems a{
-  text-decoration: underline;
-  color: var(--primary-color);
-  cursor: pointer;
-  text-transform: uppercase;
-  font-size: 0.8rem;
-}
 
 .loading{
   margin: 20px auto;
@@ -296,32 +234,57 @@ html, body{
   text-align: center;
 }
 
-.viewChart{
-  text-align: center;
+.viewChartBtn{
+ background-color: transparent;
+ border: none;
+ color: #fff;
+ cursor: pointer;
 }
 
-.viewChartBtn{
-  background-color: #fff;
-  color: #000;
-  padding: 6px 15px;
+/* PAGINATION */
+
+.pagination{
+  text-align: center;
+  margin-top: 20px;
+}
+
+.pagPrev{
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  padding: 2px;
+  font-size: 1.25rem;
+  margin-right: 10px;
+  color: var(--third-color);
+  transform: translateY(5px);
+}
+
+.pagNext{
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  padding: 2px;
+  font-size: 1.25rem;
+  margin-right: 10px;
+  color: var(--third-color);
+  transform: translateY(5px);
+}
+
+#pagNumbers{
+  margin: 0 5px;
+  padding: 5px;
   font-size: 1rem;
   border: none;
-  margin-top: 20px;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all 0.2s ease;
   border-radius: 5px;
-  box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.2);
+  background-color: transparent;
+  color: #fff;
+  cursor: pointer;
 }
 
-.viewChartBtn:hover{
-  background-color: var(--primary-color);
-  color: var(--secondary-color);
+.pageActive{
+  background-color: var(--third-color) !important;
 }
 
-.viewChartBtn:active{
-  transform: scale(0.98);
-}
 
 /* CURRENTCOININFO */
 
@@ -480,6 +443,12 @@ html, body{
 
 /* MY ASSETS */
 
+.assetsHeader{
+  color: #fff;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
  
 .myAssets .myBalance{
   color: var(--secondary-color);
@@ -517,7 +486,177 @@ html, body{
   color: var(--secondary-color);
 }
 
+.addFundsBtn{
+  border: none;
+  margin-bottom: 25px;
+  background-color: transparent;
+  border: 1px solid var(--third-color);
+  color: #fff;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.25s ease;
+}
 
+.addFundsBtn:hover{
+  background-color: var(--third-color);
+}
+
+.addFundsBtnDiv{
+  text-align: right;
+}
+
+.myName{
+  color:#fff;
+  margin:10px 0;
+  text-transform: uppercase;
+}
+
+/* ADD FUNDS */
+
+.addFundsItems{
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.fundInput{
+  margin: 10px 0;
+  font-size: 1.25rem;
+}
+
+.fundInput input{
+  width: 600px;
+  padding: 10px;
+  margin-left: 10px;
+}
+
+.confirmAddFundsBtn button{
+  background-color: transparent;
+  border: 1px solid var(--third-color);
+  color: var(--third-color);
+  padding: 10px;
+  width: 600px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: all 0.25 ease;
+}
+
+.confirmAddFundsBtn button:hover{
+  background-color: var(--third-color);
+  color: #fff;
+}
+
+.addFundsClose{
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: transparent;
+  border: none;
+  font-size: 2rem;
+  color: var(--third-color);
+  cursor: pointer;
+  display: flex;
+  border: 1px solid var(--third-color);
+  transition: background-color 0.25s ease;
+  border-radius: 5px;
+}
+
+.addFundsClose:hover{
+  background-color: var(--third-color);
+  color: #fff;
+}
+
+
+
+/* FUNDS ADDED */
+
+.fundsAdded{
+  background-color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.fundsAddedItems button{
+  background-color: transparent;
+  border: 1px solid var(--third-color);
+  border-radius: 5px;
+  padding: 7px 25px;
+  color: var(--third-color);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.fundsAddedItems button:hover{
+  background-color: var(--third-color);
+  color: #fff;
+}
+
+
+/* EXCHANGES */
+
+.exchangesHeader{
+  text-align: center;
+  color: #fff;
+  margin-bottom: 40px;
+}
+
+.exchangeBody{
+  text-align: center;
+}
+
+.exchangeTable{
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  text-align: center;
+  font-size: 1.1rem;
+  color: #fff;
+  margin-top: 20px;
+}
+
+.exchangeTable thead tr th{
+  padding-bottom: 20px;
+}
+
+.exchangeBody tr{
+  border: 1px solid var(--third-color);
+  border-radius: 5px;
+}
+
+.exchangeBody tr td{
+  padding: 25px 10px;
+}
+
+.exchangeTableName{
+  font-size: 1.5rem;
+}
+
+.visitExchange{
+  text-decoration: none;
+  color: #fff;
+}
+
+.noExchanges{
+  text-align: center;
+  color: var(--third-color);
+  margin-top: 20px;
+}
 
 
 /* UTILITIES */
@@ -530,7 +669,7 @@ html, body{
 
 
 
-@media(max-width: 968px){
+@media(max-width: 1068px){
   .searchBar input{
     width: 300px;
   }
@@ -574,43 +713,139 @@ html, body{
   /* TABLE */
 
   	/* Force table to not be like tables anymore */
-	table, thead, tbody, th, td, tr { 
+	.currentCoinInfoItems table, thead, tbody, th, td, tr { 
 		display: block; 
 	}
 
 	
 	/* Hide table headers (but not display: none;, for accessibility) */
-	thead tr { 
+	.currentCoinInfoItems thead tr { 
 		display: none;
 	}
 	
-	tr { 
+	.currentCoinInfoItems tr { 
     border: 1px solid var(--third-color);
    }
 	
-	td { 
+	.currentCoinInfoItems td { 
 		border: none;
 		position: relative;
     text-align: right;
     border-bottom: 1px solid var(--third-color);
 	}
 
-  td p{
+  .currentCoinInfoItems td p{
     padding-right: 10px;
   }
 	
-	td:before { 
+	.currentCoinInfoItems td:before { 
 		position: absolute;
 		top: 6px;
 		left: 10px;
 	}
 
-  td:nth-of-type(1):before { content: "Rank"; }
-	td:nth-of-type(2):before { content: "Name"; }
-	td:nth-of-type(3):before { content: "Price"; }
-	td:nth-of-type(4):before { content: "24H %"; color: #fff; }
-	td:nth-of-type(5):before { content: "MCap"; }
-	td:nth-of-type(6):before { content: "Supply"; }
+  .currentCoinInfoItems td:nth-of-type(1):before { content: "Rank"; }
+	.currentCoinInfoItems td:nth-of-type(2):before { content: "Name"; }
+	.currentCoinInfoItems td:nth-of-type(3):before { content: "Price"; }
+	.currentCoinInfoItems td:nth-of-type(4):before { content: "24H %"; color: #fff; }
+	.currentCoinInfoItems td:nth-of-type(5):before { content: "MCap"; }
+	.currentCoinInfoItems td:nth-of-type(6):before { content: "Supply"; }
+
+  .coinTable tr{
+    margin: 20px 0;
+  }
+
+  .coinTable table, thead, tbody, th, td, tr{
+    display: block;
+  }
+
+  .coinTable thead tr { 
+		display: none;
+	}
+
+  .coinTable tr{
+    border: 1px solid var(--third-color);
+  }
+
+  .coinTable td{
+    border: none;
+		position: relative;
+    text-align: right;
+    border-bottom: 1px solid var(--third-color);
+  }
+
+  .coinTable tr td{
+    padding: 10px;
+  }
+
+  .coinTable td:before{
+    position: absolute;
+		top: 6px;
+		left: 10px;
+  }
+
+  .coinTable td:nth-of-type(1):before { content: "Rank"; }
+  .coinTable td:nth-of-type(2):before { content: "Name"; }
+	.coinTable td:nth-of-type(3):before { content: "Price"; }
+	.coinTable td:nth-of-type(4):before { content: "24H %"; color: #fff; }
+	.coinTable td:nth-of-type(5):before { content: "MCap"; }
+	.coinTable td:nth-of-type(6):before { content: "Volume"; }
+	.coinTable td:nth-of-type(7):before { content: "Stats"; }
+
+  /* Exchanges Table */
+
+  .exchangeTable tr{
+    margin: 20px 0;
+  }
+
+  .exchangeTable table, thead, tbody, th, td, tr{
+    display: block;
+  }
+
+  .exchangeTable thead tr { 
+		display: none;
+	}
+
+  .exchangeTable tr{
+    border: 1px solid var(--third-color);
+  }
+
+  .exchangeTable td{
+    border: none;
+		position: relative;
+    text-align: right;
+    border-bottom: 1px solid var(--third-color);
+  }
+
+  .exchangeTable tr td{
+    padding: 10px;
+  }
+
+  .exchangeTable td:before{
+    position: absolute;
+		top: 6px;
+		left: 10px;
+  }
+
+  .exchangeTable td:nth-of-type(1):before { content: "Rank"; }
+  .exchangeTable td:nth-of-type(2):before { content: "Name"; }
+	.exchangeTable td:nth-of-type(3):before { content: "Volume"; }
+	.exchangeTable td:nth-of-type(4):before { content: "# Of Exchange Pairs"; color: #fff; }
+	.exchangeTable td:nth-of-type(5):before { content: "Visit Exchange"; }
+	
+
+  /*  ADD FUNDS PAGES */
+  
+  .fundInput input{
+    width: 300px;
+    padding: 10px;
+    margin-left: 10px;
+  }
+  
+  .confirmAddFundsBtn button{
+    width: 300px;
+  }
+  
 }
 
 @media(max-width: 768px){

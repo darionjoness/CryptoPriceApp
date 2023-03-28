@@ -52,7 +52,7 @@ const CurrentCoinInfo = ({ coinData, currentDataRank, currentCoinInfoLoading }: 
                         </td>
                         <td>
                             <p>
-                                {Number(coinData[currentDataRank].priceUsd).toLocaleString()}
+                                ${Number(coinData[currentDataRank].priceUsd).toLocaleString()}
                             </p>
                         </td>
                         {Number(coinData[currentDataRank].changePercent24Hr) > 0 
@@ -71,16 +71,16 @@ const CurrentCoinInfo = ({ coinData, currentDataRank, currentCoinInfoLoading }: 
                         }
                         <td>
                             <p>
-                                {Number(coinData[currentDataRank].marketCapUsd).toLocaleString(undefined,
+                                ${Number(coinData[currentDataRank].marketCapUsd).toLocaleString(undefined,
                                 {'minimumFractionDigits':2,'maximumFractionDigits':2})}
                             </p>
                         </td>
                         <td>
                             <p>
-                                {Number(coinData[currentDataRank].supply).toLocaleString(undefined,
-                                {'minimumFractionDigits':2,'maximumFractionDigits':2})}
+                                {Number(coinData[currentDataRank].supply).toLocaleString()}
                             </p>
                         </td>
+    
                     </tr>
                 </tbody>
             </table>

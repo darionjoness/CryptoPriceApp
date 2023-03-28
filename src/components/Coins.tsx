@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import ReactSimplyCarousel from 'react-simply-carousel';
 import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
+import Pagination from './Pagination'
 
 interface CoinDataTypes {
     changePercent24Hr: string
@@ -20,11 +21,13 @@ interface CoinDataTypes {
 interface CoinDataProps {
     coinData: CoinDataTypes[]
     searchInput: string
-    onClick: (e: React.MouseEvent<HTMLButtonElement>) => void
+    onClick: React.MouseEventHandler
 }
 
 function ReactSimplyCarouselExample({ coinData, searchInput, onClick }: CoinDataProps) {
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [itemsPerPage, setItemsPerPage] = useState<number>(10);
 
   let newCoinData = coinData
         // Filter through coinData
@@ -39,85 +42,63 @@ function ReactSimplyCarouselExample({ coinData, searchInput, onClick }: CoinData
             }
         })
 
+        // newCoinData.length divide by itemsPerPage gets the total number of pages
+        const totalPages: number = Math.ceil(newCoinData.length / itemsPerPage);
+
+        // create handlePageChange function and pass through pageNumber
+        function handlePageChange(pageNumber: number): void {
+          setCurrentPage(pageNumber);
+        }
+      
+        // Get the start index for pagination
+        const startIndex: number = (currentPage - 1) * itemsPerPage;
+
+        // Get the end index for the pagination
+        const endIndex: number = startIndex + itemsPerPage;
+
+        // Slice out the startIndex and endIndex into a new array
+        const itemsToDisplay = newCoinData.slice(startIndex, endIndex);
+
 
   return (
-    <div>
-      {newCoinData.length > 0 ? <ReactSimplyCarousel
-        activeSlideIndex={activeSlideIndex}
-        onRequestChange={setActiveSlideIndex}
-        autoplay={true}
-        autoplayDelay={3000}
-        itemsToShow={3}
-        itemsToScroll={1}
-        forwardBtnProps={{
-          //here you can also pass className, or any other button element attributes
-          style: {
-            alignSelf: 'center',
-            background: '#b74cf5',
-            border: '1px solid #fff',
-            borderRadius: '50%',
-            color: 'white',
-            cursor: 'pointer',
-            fontSize: '20px',
-            margin: '0 10px',
-            height: 40,
-            lineHeight: 1,
-            textAlign: 'center',
-            width: 40,
-          },
-          children: <span>{<FaArrowRight/>}</span>,
-        }}
-        backwardBtnProps={{
-          //here you can also pass className, or any other button element attributes
-          style: {
-            alignSelf: 'center',
-            background: '#b74cf5',
-            border: '1px solid #fff',
-            borderRadius: '50%',
-            color: 'white',
-            cursor: 'pointer',
-            fontSize: '20px',
-            margin:'0 10px' ,
-            height: 40,
-            lineHeight: 1,
-            textAlign: 'center',
-            width: 40,
-          },
-          children: <span>{<FaArrowLeft />}</span>,
-        }}
-        responsiveProps={[
-          {
-            itemsToShow: 2,
-            itemsToScroll: 1,
-            maxWidth: 1268,
-          },
-          {
-            maxWidth: 868,
-            itemsToShow: 1,
-            itemsToScroll: 1
-          }
-        ]}
-        speed={300}
-        easing="linear"
-      >
-        {/* here you can also pass any other element attributes. Also, you can use your custom components as slides */}
-        { 
-            
-        newCoinData
+    <div className='container'>
+      <h1 className='coinHeader'>Top Cryptocurrency prices by Market Cap</h1>
+
+      {newCoinData.length > 0 ? <table className='coinTable'>
+
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>MCap</th>
+            <th>24HR %</th>
+            <th>Volume</th>
+            <th>Stats</th>
+          </tr>
+        </thead>
+
+
+       {itemsToDisplay
         .map((item, idx) => (
-            
-            <div style={{ margin: '10px 0' }} key={item.id} className='coins'>
-                <div className="coinsItems">
-                    <div className="coinTitle">
-                        <h2>{item.name}</h2>
-                        <p>{item.symbol}</p>
-                    </div>
-                    <div className="coinPriceDiv">
-                        <p className='coinPrice'>
-                            ${Number(item.priceUsd)
-                            .toLocaleString()}
-                        </p>
-                        <div className='changePercent'>
+          <tbody key={item.id} className='coinBody'>
+          <tr>
+            <td><p>{item.rank}</p></td>
+              <td>
+                  <span className='coinTitle'>{item.name}</span>
+                  <span className='coinSymbol'>{item.symbol}</span>
+              </td>
+              <td>
+              <p className='coinPrice'>
+                ${Number(item.priceUsd)
+                .toLocaleString()}
+              </p>
+              </td>
+              <td>
+              <p className='marketCap'>{` $${Number(item.marketCapUsd).toLocaleString()}`}</p>
+            </td>
+            <td>
+            <div className='changePercent'>
                             {Number(item.changePercent24Hr) > 0 
                             ? 
                             <p className='changePercent positive'>
@@ -127,19 +108,25 @@ function ReactSimplyCarouselExample({ coinData, searchInput, onClick }: CoinData
                                 {Number(item.changePercent24Hr).toFixed(2)}%
                             </p> }
                         </div>
-                    </div>
-                    <p className='marketCap'><strong>MCAP: </strong>{` ${Number(item.marketCapUsd).toLocaleString()}`}</p>
-                    <p className='volume'><strong>24H Volume: </strong>{` ${Number(item.volumeUsd24Hr).toLocaleString()}`}</p>
-                    <a target={'_blank'} href={item.explorer}>Blockchain Explorer</a>
-                    <div className="viewChart">
-                        <button value={item.rank} id={item.id} onClick={(e) => onClick(e)} className='viewChartBtn'>
-                            View Stats
-                        </button>
-                    </div>
-                </div>
-            </div>
-        ))} 
-      </ReactSimplyCarousel> : <h1 className='noCoins'>No coins matching that name!</h1>}
+            </td>
+            <td>
+              <p className='volume'>{` $${Number(item.volumeUsd24Hr).toLocaleString()}`}</p>
+            </td>
+            <td>
+            <button value={item.rank} id={item.id} onClick={(e) => onClick(e)} className='viewChartBtn'>
+                View Stats
+            </button>
+            </td>
+          </tr>
+          </tbody>
+
+           ))}
+
+
+      </table> : <h1 className='noCoins'>No Coins matching this name!</h1>
+      
+            }
+          <Pagination totalPages={totalPages} currentPage={currentPage} onPageChange={handlePageChange} />
     </div>
   )
 }

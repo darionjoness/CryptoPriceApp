@@ -1,5 +1,5 @@
 import './App.css'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Header from './components/Header'
 import SearchBar from './components/SearchBar'
@@ -13,9 +13,10 @@ import ThirtyDayChart from './components/ThirtyDayChart'
 import ThreeMonthChart from './components/ThreeMonthChart'
 import OneYearChart from './components/OneYearChart'
 import MyAssets from './components/MyAssets'
-import Showcase from './components/Showcase'
+import Sidebar from './components/Sidebar'
+import Exchanges from './components/Exchanges'
 
-// API Data is about a day off, it is not up to date to the exact hour
+// API Data is about a day off, it is not up to date to the exact minute
 
 function App() {
   const [coinData, setCoinData] = useState([])
@@ -28,8 +29,18 @@ function App() {
   const [currentCoinInfoLoading, setCurrentCoinInfoLoading] = useState<boolean>(false)
   const [currentChartDataTime, setCurrentChartDataTime] = useState<number>(0)
   const [timeInterval, setTimeInterval] = useState<string>('h')
-  const [changeSection, setChangeSection] = useState<boolean>(false)
-
+  const [changeSection, setChangeSection] = useState<number>(0)
+  const [viewModal, setViewModal] = useState<boolean>(false)
+  const [viewSidebar, setViewSidebar] = useState<boolean>(false)
+  // My Assets state
+  const [showAddFunds, setShowAddFunds] = useState<boolean>(false)
+  const [amount, setAmount] = useState<number>(0)
+  const [addedAmount, setAddedAmount] = useState<number>(0)
+  const [amountInput, setAmountInput] = useState<string>('')
+  const [showConfirmation, setShowConfirmation] = useState<boolean>(false)
+  const [nameInput, setNameInput] = useState<string>('')
+  const [name, setName] = useState<string>('')
+  const [transactions, setTransactions] = useState<number[]>([])
 
   useEffect(() => {
     fetchCoins();
@@ -73,8 +84,16 @@ function App() {
     // setCoinHistoryId to the target clicked id
     setCoinHistoryId(e.target.id)
 
-
+    // setCurrentDataRank to the e.target.value - 1
     setCurrentDataRank(e.target.value - 1)
+
+    // setViewModal to true
+    setViewModal(true)
+
+    // Grab the currentCoinInfo from the dom
+    const currentCoin = document.querySelector('.currentCoinInfo')
+    // Scroll down to currentCoin
+    currentCoin?.scrollIntoView()
 
   }
 
@@ -145,22 +164,90 @@ function App() {
     setTimeInterval('d')
   }
 
+  // Used to show cryptos
   const showHome = () => {
-    setChangeSection(false)
+    setChangeSection(0)
   }
 
+  // Used to show Wallet
   const showAssets = () => {
-    setChangeSection(true)
+    setChangeSection(1)
+  }
+
+  const showExchanges = () => {
+    setChangeSection(2)
+  }
+
+  // Used to toggle sidebar
+  const showSidebar = () => {
+    setViewSidebar(!viewSidebar)
+  }
+
+  let menuRef = useRef<HTMLDivElement>();
+
+  // When click outside the sidebar close it
+  useEffect(() => {
+    let handler = (e: any) => {
+      if(!menuRef.current?.contains(e.target)){
+        setViewSidebar(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handler)
+  }, [])
+
+
+  // MyAssets component functions
+
+  //   Controlled input for amount input
+  const controlAmount = (e: any) => {
+    setAmountInput(e.target.value)
+  }
+
+  // Create comepleAddFunds function
+  const completeAddFunds = () => {
+    // setAmount to amount + the amountInput made a number, totalAmount
+    setAmount(amount + Number(amountInput))
+
+    // Gets the amount added
+    setAddedAmount(Number(amountInput))
+    // Clear the amountInput field
+    setAmountInput('')
+    // Set name to the setName input
+    setName(nameInput)
+    // Show confirmation
+    setShowConfirmation(true)
+    // Hide add funds page
+    setShowAddFunds(false)
+  }
+
+   // Show the funds form when true
+   const showFundsForm = () => {
+    setShowAddFunds(true)
+  }
+
+  // Create closeFundsAdded function
+  const closeFundsAdded = () => {
+    // Hide confirmation page
+    setShowConfirmation(false)
+
+    // Get an array of transactions
+    setTransactions([...transactions, addedAmount])
+  }
+
+  // Create closeAddFunds function
+  const closeAddFunds = () => {
+    setShowAddFunds(false)
   }
 
   return (
     <div className="app">
 
-      <Showcase changeSection={showHome} changeSectionTwo={showAssets} />
+      <Sidebar showExchanges={showExchanges} menuRef={menuRef} changeSection={changeSection} showAssets={showAssets} showHome={showHome} hideSidebar={showSidebar} viewSidebar={viewSidebar} />
 
-      <SearchBar onChange={(e) => setSearchInput(e.target.value)} />
-
-      {changeSection === false && <div className="sectionCoinInfo">
+      <Header showSidebar={showSidebar} changeSection={showHome} changeSectionTwo={showAssets} />
+      
+      {changeSection === 0 && <div className="sectionCoinInfo">
         {isLoading ? <Loading type='spokes' color='#b74cf5' /> : <Coins coinData={coinData} searchInput={searchInput} onClick={clickChangeCoinHistory}/>}
 
         {coinsFetched ? <CurrentCoinInfo coinData={coinData} currentDataRank={currentDataRank} currentCoinInfoLoading={currentCoinInfoLoading} /> : ''}
@@ -178,12 +265,32 @@ function App() {
         <OneYearChart currentCoinInfoLoading={currentCoinInfoLoading} currentChartDataTime={currentChartDataTime} byDayHistory={byDayHistory} coinHistoryId={coinHistoryId} />
       </div>}
 
-      {changeSection && <div className="sectionMyAssets">
-        {isLoading ? <Loading type='spokes' color='#b74cf5' />  : <MyAssets searchInput={searchInput} coinData={coinData} />}
+      {changeSection === 1 && <div className="sectionMyAssets">
+        {isLoading ? 
+        <Loading type='spokes' color='#b74cf5' />  
+        : 
+        <MyAssets 
+        controlName={(e:any) => setNameInput(e.target.value)} 
+        closeAddFunds={closeAddFunds} 
+        closeFundsAdded={closeFundsAdded} 
+        showFundsForm={showFundsForm} 
+        name={name} 
+        nameInput={nameInput} 
+        showConfirmation={showConfirmation} 
+        amountInput={amountInput} 
+        amount={amount} 
+        showAddFunds={showAddFunds} 
+        completeAddFunds={completeAddFunds} 
+        controlAmount={controlAmount} 
+        onChange={(e: any) => setSearchInput(e.target.value)} 
+        searchInput={searchInput} 
+        coinData={coinData} />}
       </div>}
 
+      {changeSection === 2 && <Exchanges />}
 
     </div>
+
   )
 }
 
