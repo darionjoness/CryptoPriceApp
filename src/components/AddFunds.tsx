@@ -9,7 +9,7 @@ interface AddFundsTypes {
   controlAmount: any
   completeAddFunds: React.MouseEventHandler
   nameInput: string
-  inputSet: any
+  inputSet: React.FormEventHandler
   closeAddFunds: React.MouseEventHandler
 }
 
