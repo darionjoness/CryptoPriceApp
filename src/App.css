@@ -28,7 +28,6 @@ input[type=number] {
 /* Remove the up and down arrows on the input number field */
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
   margin: 0;
 }
 
