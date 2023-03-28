@@ -10,9 +10,10 @@ interface AddFundsTypes {
   nameInput: string
   inputSet: React.FormEventHandler
   closeAddFunds: React.MouseEventHandler
+  addFundsErr: boolean
 }
 
-const AddFunds = ({ showAddFunds, amountInput, controlAmount, completeAddFunds, nameInput, inputSet, closeAddFunds }: AddFundsTypes) => {
+const AddFunds = ({ showAddFunds, amountInput, controlAmount, completeAddFunds, nameInput, inputSet, closeAddFunds, addFundsErr }: AddFundsTypes) => {
 
 
   return (
@@ -26,6 +27,7 @@ const AddFunds = ({ showAddFunds, amountInput, controlAmount, completeAddFunds, 
         <div className="fundInput amountInput">
           <input value={amountInput} onChange={(e) => controlAmount(e)} type="number" placeholder='Amount' />
         </div>
+        {addFundsErr ? <p className='addFundsErr'>Please fill in both inputs!</p> : ''}
         <div className="confirmAddFundsBtn">
           <button onClick={completeAddFunds}>Add Funds</button>
         </div>

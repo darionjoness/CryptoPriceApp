@@ -36,9 +36,10 @@ interface MyAssetsProps {
     closeFundsAdded: React.MouseEventHandler
     closeAddFunds: React.MouseEventHandler
     controlName: React.FormEventHandler
+    addFundsErr: boolean
 }
 
-const MyAssets = ({ coinData, searchInput, onChange, controlAmount, completeAddFunds, showAddFunds, amount, amountInput, showConfirmation, nameInput, name, showFundsForm, closeFundsAdded, closeAddFunds, controlName }: MyAssetsProps) => {
+const MyAssets = ({ coinData, searchInput, onChange, controlAmount, completeAddFunds, showAddFunds, amount, amountInput, showConfirmation, nameInput, name, showFundsForm, closeFundsAdded, closeAddFunds, controlName, addFundsErr }: MyAssetsProps) => {
 
     let newCoinData = coinData
         // Filter through coinData
@@ -65,6 +66,7 @@ const MyAssets = ({ coinData, searchInput, onChange, controlAmount, completeAddF
         {showConfirmation ? 
         <FundsAdded closeFundsAdded={closeFundsAdded} /> : 
         <AddFunds 
+        addFundsErr={addFundsErr}
         closeAddFunds={closeAddFunds} 
         inputSet={controlName} 
         nameInput={nameInput} 

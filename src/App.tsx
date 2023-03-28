@@ -41,6 +41,7 @@ function App() {
   const [nameInput, setNameInput] = useState<string>('')
   const [name, setName] = useState<string>('')
   const [transactions, setTransactions] = useState<number[]>([])
+  const [addFundsErr, setAddFundsErr] = useState<boolean>(false)
 
   useEffect(() => {
     fetchCoins();
@@ -206,19 +207,25 @@ function App() {
 
   // Create comepleAddFunds function
   const completeAddFunds = () => {
-    // setAmount to amount + the amountInput made a number, totalAmount
-    setAmount(amount + Number(amountInput))
+    if(nameInput == '' || amountInput == ''){
+      setAddFundsErr(true)
+    }else{
+      // setAmount to amount + the amountInput made a number, totalAmount
+      setAmount(amount + Number(amountInput))
 
-    // Gets the amount added
-    setAddedAmount(Number(amountInput))
-    // Clear the amountInput field
-    setAmountInput('')
-    // Set name to the setName input
-    setName(nameInput)
-    // Show confirmation
-    setShowConfirmation(true)
-    // Hide add funds page
-    setShowAddFunds(false)
+      // Gets the amount added
+      setAddedAmount(Number(amountInput))
+      // Clear the amountInput field
+      setAmountInput('')
+      // Set name to the setName input
+      setName(nameInput)
+      // Show confirmation
+      setShowConfirmation(true)
+      // Hide add funds page
+      setShowAddFunds(false)
+      // Hide error message
+      setAddFundsErr(false)
+    }
   }
 
    // Show the funds form when true
@@ -270,6 +277,7 @@ function App() {
         <Loading type='spokes' color='#b74cf5' />  
         : 
         <MyAssets 
+        addFundsErr={addFundsErr}
         controlName={(e:any) => setNameInput(e.target.value)} 
         closeAddFunds={closeAddFunds} 
         closeFundsAdded={closeFundsAdded} 
