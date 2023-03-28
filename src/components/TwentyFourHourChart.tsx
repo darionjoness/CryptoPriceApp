@@ -51,8 +51,12 @@ const TwentyFourHourChart = ({ currentChartDataTime, byDayHistory, coinHistoryId
                 // Split the date 
                 let splitDate: string[] = item.date.split('-')
 
+                console.log(splitDate)
+
                 // Slice the time out of the array
                 let newTime: any = splitDate[2].slice(3 ,5)
+
+                console.log(newTime)
 
                 // Initalize finalTime
                 let finalTime: string | number

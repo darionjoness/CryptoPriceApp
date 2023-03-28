@@ -42,7 +42,7 @@ const Exchanges = () => {
 
   return (
     <div className='exchanges'>
-        <h1 className='exchangesHeader'>Top Exchanges by most volume</h1>
+        <h1 className='exchangesHeader'>Top Exchanges</h1>
         <SearchBar placeholder={'🔍  Search Exchange'} onChange={(e) => setSearchInput(e.target.value)} />
         {isLoading ? <Loading type='spokes' color='#b74cf5' /> :<div className="exchangesItems container">
             {newExchangesData.length > 0 ? <table className='exchangeTable'>
