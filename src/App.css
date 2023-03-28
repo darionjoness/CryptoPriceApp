@@ -19,17 +19,19 @@ html, body{
   scroll-behavior: smooth;
 }
 
-/* Chrome, Safari, Edge, Opera */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
+input[type=number] {
+  -webkit-appearance: textfield; /* Safari and Chrome */
+  -moz-appearance: textfield; /* Firefox */
+  appearance: textfield; /* Standard syntax */
+}
+
+/* Remove the up and down arrows on the input number field */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-/* Firefox */
-input[type=number] {
-  -moz-appearance: textfield;
-}
 
 .app{
   background-color:var(--primary-color) ;
