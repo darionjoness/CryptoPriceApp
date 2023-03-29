@@ -254,7 +254,6 @@ function App() {
 
     // Get an array of transactions
     setTransactions([...transactions, addedAmount])
-    
   }
 
   // Create closeAddFunds function
