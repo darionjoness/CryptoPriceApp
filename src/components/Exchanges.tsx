@@ -36,8 +36,6 @@ const Exchanges = () => {
         setExchangesData(data.data)
 
         setIsLoading(false)
-
-        console.log(data.data)
     }
 
   return (

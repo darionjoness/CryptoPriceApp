@@ -180,6 +180,135 @@ input[type=number]::-webkit-outer-spin-button {
   outline-color: var(--third-color);
 }
 
+/* TOP GAINERS */
+.topGainers{
+  background-color: var(--third-color);
+  color: #fff;
+  width: 33%;
+  padding: 15px;
+  box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
+.topGainersHeader{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.topGainersHeader button{
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.topGainer{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 5px 0;
+}
+
+.topGainers h2{
+  margin-bottom: 10px;
+}
+
+.topGainerTitle{
+  display: flex;
+  align-items: center;
+}
+
+
+.topGainerTitle h3{
+  font-weight: 600;
+  margin: 0 5px;
+}
+
+.topGainerTitle h5{
+  color: lightgray;
+}
+
+.topGainerPercent p{
+  color: #00FF00;
+}
+
+.topGainersViewMore{
+  text-align: right;
+}
+
+/* MORE TOP GAINERS */
+
+.moreTopGainers{
+  background-color: var(--primary-color);
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 10;
+  color: #fff;
+  overflow-y: scroll;
+  padding: 50px 0;
+}
+
+.moreTopGainersHeader{
+  text-align: center;
+  color: #fff;
+  margin: 20px 0;
+}
+
+.moreTopGainersTable{
+  border-collapse: collapse;
+  width: 100%;
+  text-align: center;
+}
+
+.moreTopGainersTable thead tr th{
+  padding-bottom: 20px;
+}
+
+.moreTopTenGainersBody tr{
+  border: 1px solid var(--third-color);
+  border-radius: 5px;
+}
+
+.moreTopTenGainersBody tr td{
+  padding: 25px 10px;
+}
+
+.moreTopGainersCoinTitle{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.moreTopGainersCoinTitle h5{
+  color: lightgray;
+}
+
+.closeMoreTopGainers{
+  background-color: transparent;
+  border: 1px solid var(--third-color);
+  color: #fff;
+  font-size: 2rem;
+  display: flex;
+  border-radius: 5px;
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  transition: all 0.25s ease;
+}
+
+.closeMoreTopGainers:hover{
+  background-color: var(--third-color);
+}
 
 
 /* COINS */
@@ -874,6 +1003,48 @@ input[type=number]::-webkit-outer-spin-button {
 	.exchangeTable td:nth-of-type(3):before { content: "Volume"; }
 	.exchangeTable td:nth-of-type(4):before { content: "# Of Exchange Pairs"; color: #fff; }
 	.exchangeTable td:nth-of-type(5):before { content: "Visit Exchange"; }
+
+  /* TOP TEN GAINERS */
+
+  .moreTopGainersCoinTitle{
+    justify-content: end;
+  }
+
+  .moreTopGainersTable tr{
+    margin: 20px 0;
+  }
+
+  .moreTopGainersTable table, thead, tbody, th, td, tr{
+    display: block;
+  }
+
+  .moreTopGainersTable thead tr { 
+		display: none;
+	}
+
+  .moreTopGainersTable td{
+    border: none;
+		position: relative;
+    text-align: right;
+    border-bottom: 1px solid var(--third-color);
+  }
+
+  .moreTopGainersTable tr td{
+    padding: 10px;
+  }
+
+  .moreTopGainersTable td:before{
+    position: absolute;
+		top: 10px;
+		left: 10px;
+  }
+
+  .moreTopGainersTable td:nth-of-type(1):before { content: "Rank"; }
+  .moreTopGainersTable td:nth-of-type(2):before { content: "Name"; }
+  .moreTopGainersTable td:nth-of-type(3):before { content: "Price"; }
+  .moreTopGainersTable td:nth-of-type(4):before { content: "24h %"; }
+  .moreTopGainersTable td:nth-of-type(5):before { content: "Volume(24h)"; }
+ 
 	
 
   /*  ADD FUNDS PAGES */
@@ -888,6 +1059,12 @@ input[type=number]::-webkit-outer-spin-button {
     width: 300px;
   }
   
+}
+
+@media(max-width: 968px){
+  .topGainers{
+    display: none;
+  }
 }
 
 @media(max-width: 768px){
