@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react';
 import { FaBars } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
-import NavDropdown from './NavDropdown';
+
 
 interface HeaderProps {
   showSidebar: React.MouseEventHandler
