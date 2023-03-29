@@ -5,13 +5,11 @@ import { IoClose } from "react-icons/io5";
 import NavDropdown from './NavDropdown';
 
 interface HeaderProps {
-  changeSection: (e: React.MouseEvent<HTMLButtonElement>) => void
-  changeSectionTwo: (e: React.MouseEvent<HTMLButtonElement>) => void
   showSidebar: React.MouseEventHandler
 }
 
 
-const Header = ({ changeSection, changeSectionTwo, showSidebar }: HeaderProps) => {
+const Header = ({ showSidebar }: HeaderProps) => {
   const [navDropdown, setNavDropdown] = useState<boolean>(false)
 
     const showNavDropdown = () => {

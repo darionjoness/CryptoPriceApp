@@ -7,34 +7,31 @@ import { AiOutlineStar, AiOutlineClose } from "react-icons/ai";
 interface SidebarTypes {
     viewSidebar: boolean
     hideSidebar: React.MouseEventHandler
-    showHome: React.MouseEventHandler
-    showAssets: React.MouseEventHandler
     changeSection: number
     menuRef: any
-    showExchanges: React.MouseEventHandler
-    showTransactions: React.MouseEventHandler
+    changeTab: any
 }
 
-const Sidebar = ({ viewSidebar, hideSidebar, showHome, showAssets, changeSection, menuRef, showExchanges, showTransactions }: SidebarTypes) => {
+const Sidebar = ({ viewSidebar, hideSidebar, changeSection, menuRef, changeTab }: SidebarTypes) => {
   return (
     <div ref={menuRef} className={`sidebar ${viewSidebar ? 'show' : 'hide'}`}>
         <button onClick={hideSidebar} className="closeSidebarBtn">
                 <AiOutlineClose />
             </button>
         <div className="sidebarItems">
-            <div onClick={showHome} className={`sidebarLink viewCryptos ${changeSection === 0 ? 'active' : ''}`}>
+            <div onClick={() => changeTab(0)} className={`sidebarLink viewCryptos ${changeSection == 0 ? 'active' : ''}`}>
                 <p><BiCoinStack /></p>
                 <p>Cryptos</p>
             </div>
-            <div onClick={showAssets} className={`sidebarLink viewWallet ${changeSection === 1 ? 'active' : ''}`}>
+            <div onClick={() => changeTab(1)} className={`sidebarLink viewWallet ${changeSection == 1 ? 'active' : ''}`}>
                 <p><BiWalletAlt /></p>
                 <p>Wallet</p>
             </div>
-            <div onClick={showExchanges} className={`sidebarLink viewExchange ${changeSection === 2 ? 'active' : ''}`}>
+            <div onClick={() => changeTab(2)} className={`sidebarLink viewExchange ${changeSection === 2 ? 'active' : ''}`}>
                 <p><FaExchangeAlt /></p>
                 <p>Exchanges</p>
             </div>
-            <div onClick={showTransactions} className={`sidebarLink viewTransactions ${changeSection === 3 ? 'active' :''}`}>
+            <div onClick={() => changeTab(3)} className={`sidebarLink viewTransactions ${changeSection === 3 ? 'active' : ''}`}>
                 <p><BiPurchaseTag /></p>
                 <p>Transactions</p>
             </div>

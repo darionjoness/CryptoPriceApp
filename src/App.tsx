@@ -1,5 +1,5 @@
 import './App.css'
-import { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Header from './components/Header'
 import SearchBar from './components/SearchBar'
@@ -83,13 +83,13 @@ function App() {
   }, [coinHistoryId, timeInterval])
 
   // Create a function
-  const clickChangeCoinHistory = (e: any) => {
+  const clickChangeCoinHistory = (e: React.MouseEvent) => {
 
     // setCoinHistoryId to the target clicked id
-    setCoinHistoryId(e.target.id)
+    setCoinHistoryId((e.target as HTMLButtonElement).id)
 
     // setCurrentDataRank to the e.target.value - 1
-    setCurrentDataRank(e.target.value - 1)
+    setCurrentDataRank(Number((e.target as HTMLButtonElement).value) - 1)
 
     // setViewModal to true
     setViewModal(true)
@@ -168,25 +168,11 @@ function App() {
     setTimeInterval('d')
   }
 
-  // Used to show cryptos
-  const showHome = () => {
-    setChangeSection(0)
+  // Create changeTab function and pass through the number you would like to show
+  const changeTab = (index: number) => {
+    setChangeSection(index)
   }
 
-  // Used to show Wallet
-  const showAssets = () => {
-    setChangeSection(1)
-  }
-
-  // Used to show exchanges
-  const showExchanges = () => {
-    setChangeSection(2)
-  }
-
-  // Used to show transactions
-  const showTransactions = () => {
-    setChangeSection(3)
-  }
 
   // Used to toggle sidebar
   const showSidebar = () => {
@@ -197,8 +183,8 @@ function App() {
 
   // When click outside the sidebar close it
   useEffect(() => {
-    let handler = (e: any) => {
-      if(!menuRef.current?.contains(e.target)){
+    let handler = (e: MouseEvent) => {
+      if(!menuRef.current?.contains(e.target as HTMLDivElement)){
         setViewSidebar(false)
       }
     }
@@ -210,8 +196,8 @@ function App() {
   // MyAssets component functions
 
   //   Controlled input for amount input
-  const controlAmount = (e: any) => {
-    setAmountInput(e.target.value)
+  const controlAmount = (e: React.FormEvent) => {
+    setAmountInput((e.target as HTMLInputElement).value)
   }
 
   // Create comepleAddFunds function
@@ -264,9 +250,9 @@ function App() {
   return (
     <div className="app">
 
-      <Sidebar showTransactions={showTransactions} showExchanges={showExchanges} menuRef={menuRef} changeSection={changeSection} showAssets={showAssets} showHome={showHome} hideSidebar={showSidebar} viewSidebar={viewSidebar} />
+      <Sidebar changeTab={changeTab} menuRef={menuRef} changeSection={changeSection} hideSidebar={showSidebar} viewSidebar={viewSidebar} />
 
-      <Header showSidebar={showSidebar} changeSection={showHome} changeSectionTwo={showAssets} />
+      <Header showSidebar={showSidebar} />
       
       {changeSection === 0 && <div className="sectionCoinInfo">
         {isLoading ? <Loading type='spokes' color='#b74cf5' /> : <Coins coinData={coinData} searchInput={searchInput} onClick={clickChangeCoinHistory}/>}
