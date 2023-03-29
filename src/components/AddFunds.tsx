@@ -16,7 +16,12 @@ interface AddFundsTypes {
 
 const AddFunds = ({ showAddFunds, amountInput, controlAmount, completeAddFunds, nameInput, inputSet, closeAddFunds, addFundsErr, negativeNumErr }: AddFundsTypes) => {
 
-
+  // Hide overflow when true
+  if(showAddFunds){
+    document.body.style.overflow = 'hidden'
+  }else{
+    document.body.style.overflow = 'auto'
+  }
   return (
     <div className='addFunds'>
       {showAddFunds && <div className="addFundsItems">
