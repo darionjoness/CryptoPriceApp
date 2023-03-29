@@ -62,7 +62,7 @@ const MoreTopGainers = ({ topTenGainers, toggleMoreGainers }: MoreTopGainersType
                         <td>
                             <p>${Number(item.priceUsd).toFixed(4)}</p>
                         </td>
-                        <td>
+                        <td className='moreTopGainersPercent'>
                             <p>+{Number(item.changePercent24Hr).toFixed(4)}</p>
                         </td>
                         <td>
