@@ -122,8 +122,8 @@ const TwentyFourHourChart = ({ currentChartDataTime, byDayHistory, coinHistoryId
       {
         label: capitalHistoryId,
         data: byHourHistoryPrice,
-        borderColor: '#b74cf5',
-        backgroundColor: '#b74cf5',
+        borderColor: '#d4af37',
+        backgroundColor: '#d4af37',
       },
     ],
   };
@@ -163,7 +163,7 @@ const TwentyFourHourChart = ({ currentChartDataTime, byDayHistory, coinHistoryId
     <div className={`twentyFourHourChart container 
     ${currentChartDataTime === 0 ? 'showChart' : 'hideChart'}`}>
         <div className="twentyFourHourChartItems">
-            {currentCoinInfoLoading ? <Loading type={'cylon'} color={'#b74cf5'} /> : <Line options={options} data={data} plugins={[legendMargin]} />}
+            {currentCoinInfoLoading ? <Loading type={'cylon'} color={'#d4af37'} /> : <Line options={options} data={data} plugins={[legendMargin]} />}
         </div>
     </div>
   )

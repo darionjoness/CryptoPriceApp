@@ -286,7 +286,7 @@ function App() {
 
         <Route path='/' element={
           <div className="sectionCoinInfo">
-          {isLoading ? <Loading type='spokes' color='#b74cf5' /> : <Coins topThreeLosers={topThreeLosers} topThreeGainers={topThreeGainers} coinData={coinData} searchInput={searchInput} onClick={clickChangeCoinHistory}/>}
+          {isLoading ? <Loading type='spokes' color='#d4af37' /> : <Coins topThreeLosers={topThreeLosers} topThreeGainers={topThreeGainers} coinData={coinData} searchInput={searchInput} onClick={clickChangeCoinHistory}/>}
   
           {coinsFetched ? <CurrentCoinInfo coinData={coinData} currentDataRank={currentDataRank} currentCoinInfoLoading={currentCoinInfoLoading} /> : ''}
   
