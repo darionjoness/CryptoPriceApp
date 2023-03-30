@@ -1,6 +1,7 @@
 import React from 'react'
 import { MdShowChart } from "react-icons/md";
 import { FiChevronRight } from "react-icons/fi";
+import {Link} from 'react-router-dom'
 
 interface CoinDataTypes {
     changePercent24Hr: string
@@ -19,17 +20,17 @@ interface CoinDataTypes {
 
 interface TopMovers {
     topThreeGainers: CoinDataTypes[]
-    toggleMoreGainers: React.MouseEventHandler<HTMLButtonElement>
+    
 }
 
-const TopGainers = ({ topThreeGainers, toggleMoreGainers }: TopMovers) => {
+const TopGainers = ({ topThreeGainers }: TopMovers) => {
 
 
   return (
     <div className='topGainers'>
         <div className="topGainersHeader">
             <h2>🚀 Top Gainers 24h</h2>
-            <button onClick={toggleMoreGainers}>More <FiChevronRight /></button>
+            <Link className='topGainersMore' to={'/topgainers'}>More <FiChevronRight /></Link>
         </div>
         <div className="topGainersItems">
             {topThreeGainers.map((item, idx) => (

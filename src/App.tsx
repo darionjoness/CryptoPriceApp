@@ -16,8 +16,9 @@ import MyAssets from './components/MyAssets'
 import Sidebar from './components/Sidebar'
 import Exchanges from './components/Exchanges'
 import Transactions from './components/Transactions'
+import MoreTopGainers from './components/MoreTopGainers'
 
-// API Data is about a day off, it is not up to date to the exact minute
+// API Data is about a day off, it is not up to date to the exact minute 
 
 function App() {
   const [coinData, setCoinData] = useState([])
@@ -247,58 +248,86 @@ function App() {
     setShowAddFunds(false)
   }
 
+  // Copy coinData
+  let coinDataCopy = [...coinData]
+      
+  // Sort the coins by changePercent24Hr in descending order
+  const sortedCoinData = coinDataCopy.sort(
+    (a:any,b:any) => b.changePercent24Hr - a.changePercent24Hr
+  )
+
+  //    Slice the top three gainers
+  const topThreeGainers = sortedCoinData.slice(0, 3)
+
+  // Slice the top 10 gainers
+  const topTenGainers = sortedCoinData.slice(0, 10)
+
   return (
     <div className="app">
 
       <Sidebar changeTab={changeTab} menuRef={menuRef} changeSection={changeSection} hideSidebar={showSidebar} viewSidebar={viewSidebar} />
 
       <Header showSidebar={showSidebar} />
+      <Routes>
+
+        <Route path='/' element={
+          <div className="sectionCoinInfo">
+          {isLoading ? <Loading type='spokes' color='#b74cf5' /> : <Coins topThreeGainers={topThreeGainers} coinData={coinData} searchInput={searchInput} onClick={clickChangeCoinHistory}/>}
+  
+          {coinsFetched ? <CurrentCoinInfo coinData={coinData} currentDataRank={currentDataRank} currentCoinInfoLoading={currentCoinInfoLoading} /> : ''}
+  
+          <SwitchChartData show1Year={show1Year} show3Month={show3Month} show30Day={show30Day} show7Day={show7Day} currentChartDataTime={currentChartDataTime} show24Hour={show24Hour} />
+  
+          <SevenDayChart currentCoinInfoLoading={currentCoinInfoLoading} currentChartDataTime={currentChartDataTime} byDayHistory={byDayHistory} coinHistoryId={coinHistoryId} />
+  
+          <TwentyFourHourChart currentCoinInfoLoading={currentCoinInfoLoading} coinHistoryId={coinHistoryId} currentChartDataTime={currentChartDataTime} byDayHistory={byDayHistory} />
+  
+          <ThirtyDayChart currentCoinInfoLoading={currentCoinInfoLoading} currentChartDataTime={currentChartDataTime} byDayHistory={byDayHistory} coinHistoryId={coinHistoryId} />
+  
+          <ThreeMonthChart currentCoinInfoLoading={currentCoinInfoLoading} currentChartDataTime={currentChartDataTime} byDayHistory={byDayHistory} coinHistoryId={coinHistoryId} />
+  
+          <OneYearChart currentCoinInfoLoading={currentCoinInfoLoading} currentChartDataTime={currentChartDataTime} byDayHistory={byDayHistory} coinHistoryId={coinHistoryId} />
+        </div>
+        }/>
+
+        <Route path='/topgainers' element={<MoreTopGainers topTenGainers={topTenGainers} />} />
       
-      {changeSection === 0 && <div className="sectionCoinInfo">
-        {isLoading ? <Loading type='spokes' color='#b74cf5' /> : <Coins coinData={coinData} searchInput={searchInput} onClick={clickChangeCoinHistory}/>}
+        <Route path='/wallet' element={
+          <div className="sectionMyAssets">
+          {isLoading ? 
+          <Loading type='spokes' color='#b74cf5' />  
+          : 
+          <MyAssets 
+          negativeNumErr={negativeNumErr}
+          addFundsErr={addFundsErr}
+          controlName={(e:any) => setNameInput(e.target.value)} 
+          closeAddFunds={closeAddFunds} 
+          closeFundsAdded={closeFundsAdded} 
+          showFundsForm={showFundsForm} 
+          name={name} 
+          nameInput={nameInput} 
+          showConfirmation={showConfirmation} 
+          amountInput={amountInput} 
+          amount={amount} 
+          showAddFunds={showAddFunds} 
+          completeAddFunds={completeAddFunds} 
+          controlAmount={controlAmount} 
+          onChange={(e: any) => setSearchInput(e.target.value)} 
+          searchInput={searchInput} 
+          coinData={coinData} />}
+        </div>
+        } />
 
-        {coinsFetched ? <CurrentCoinInfo coinData={coinData} currentDataRank={currentDataRank} currentCoinInfoLoading={currentCoinInfoLoading} /> : ''}
+        <Route path='/exchanges' element={
+          <Exchanges />
+        } />
 
-        <SwitchChartData show1Year={show1Year} show3Month={show3Month} show30Day={show30Day} show7Day={show7Day} currentChartDataTime={currentChartDataTime} show24Hour={show24Hour} />
+        <Route path='/transactions' element={
+          <Transactions transactions={transactions} />
+        } />
 
-        <SevenDayChart currentCoinInfoLoading={currentCoinInfoLoading} currentChartDataTime={currentChartDataTime} byDayHistory={byDayHistory} coinHistoryId={coinHistoryId} />
+      </Routes>
 
-        <TwentyFourHourChart currentCoinInfoLoading={currentCoinInfoLoading} coinHistoryId={coinHistoryId} currentChartDataTime={currentChartDataTime} byDayHistory={byDayHistory} />
-
-        <ThirtyDayChart currentCoinInfoLoading={currentCoinInfoLoading} currentChartDataTime={currentChartDataTime} byDayHistory={byDayHistory} coinHistoryId={coinHistoryId} />
-
-        <ThreeMonthChart currentCoinInfoLoading={currentCoinInfoLoading} currentChartDataTime={currentChartDataTime} byDayHistory={byDayHistory} coinHistoryId={coinHistoryId} />
-
-        <OneYearChart currentCoinInfoLoading={currentCoinInfoLoading} currentChartDataTime={currentChartDataTime} byDayHistory={byDayHistory} coinHistoryId={coinHistoryId} />
-      </div>}
-
-      {changeSection === 1 && <div className="sectionMyAssets">
-        {isLoading ? 
-        <Loading type='spokes' color='#b74cf5' />  
-        : 
-        <MyAssets 
-        negativeNumErr={negativeNumErr}
-        addFundsErr={addFundsErr}
-        controlName={(e:any) => setNameInput(e.target.value)} 
-        closeAddFunds={closeAddFunds} 
-        closeFundsAdded={closeFundsAdded} 
-        showFundsForm={showFundsForm} 
-        name={name} 
-        nameInput={nameInput} 
-        showConfirmation={showConfirmation} 
-        amountInput={amountInput} 
-        amount={amount} 
-        showAddFunds={showAddFunds} 
-        completeAddFunds={completeAddFunds} 
-        controlAmount={controlAmount} 
-        onChange={(e: any) => setSearchInput(e.target.value)} 
-        searchInput={searchInput} 
-        coinData={coinData} />}
-      </div>}
-
-      {changeSection === 2 && <Exchanges />}
-
-      {changeSection === 3 && <Transactions transactions={transactions} />}
 
     </div>
 

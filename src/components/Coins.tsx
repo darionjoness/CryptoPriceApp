@@ -24,13 +24,13 @@ interface CoinDataProps {
     coinData: CoinDataTypes[]
     searchInput: string
     onClick: React.MouseEventHandler
+    topThreeGainers: CoinDataTypes[]
 }
 
-function ReactSimplyCarouselExample({ coinData, searchInput, onClick }: CoinDataProps) {
+function ReactSimplyCarouselExample({ coinData, searchInput, onClick, topThreeGainers }: CoinDataProps) {
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [itemsPerPage, setItemsPerPage] = useState<number>(10);
-  const [showTenGainers, setShowTenGainers] = useState<boolean>(false)
 
   let newCoinData = coinData
         // Filter through coinData
@@ -63,35 +63,10 @@ function ReactSimplyCarouselExample({ coinData, searchInput, onClick }: CoinData
         const itemsToDisplay = newCoinData.slice(startIndex, endIndex);
 
 
-  
-        // Copy coinData
-        let coinDataCopy = [...coinData]
-      
-        // Sort the coins by changePercent24Hr in descending order
-        const sortedCoinData = coinDataCopy.sort(
-          (a:any,b:any) => b.changePercent24Hr - a.changePercent24Hr
-        )
-
-        //    Slice the top three gainers
-        const topThreeGainers = sortedCoinData.slice(0, 3)
-
-        // Slice the top 10 gainers
-        const topTenGainers = sortedCoinData.slice(0, 10)
-
-        const toggleMoreGainers = () => {
-          setShowTenGainers(!showTenGainers)
-        }
-
-        if(showTenGainers){
-          document.body.style.overflow = 'hidden'
-        }else{
-          document.body.style.overflow = 'auto'
-        }
-
 
   return (
     <div className='container'>
-        {showTenGainers ? <MoreTopGainers toggleMoreGainers={toggleMoreGainers} topTenGainers={topTenGainers} /> : <TopGainers toggleMoreGainers={toggleMoreGainers} topThreeGainers={topThreeGainers} />}
+        <TopGainers topThreeGainers={topThreeGainers} />
       <h1 className='coinHeader'>Top Cryptocurrency prices by Market Cap</h1>
 
       {newCoinData.length > 0 ? <table className='coinTable'>

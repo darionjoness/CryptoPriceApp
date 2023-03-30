@@ -18,14 +18,12 @@ interface CoinDataTypes {
 
 interface MoreTopGainersTypes {
     topTenGainers: CoinDataTypes[]
-    toggleMoreGainers: React.MouseEventHandler<HTMLButtonElement>
 }
 
-const MoreTopGainers = ({ topTenGainers, toggleMoreGainers }: MoreTopGainersTypes) => {
+const MoreTopGainers = ({ topTenGainers }: MoreTopGainersTypes) => {
   return (
     <div className='moreTopGainers'>
         <h1 className='moreTopGainersHeader'>Top Ten Gainers</h1>
-        <button onClick={toggleMoreGainers} className='closeMoreTopGainers'><AiOutlineClose /></button>
         <div className="moreTopGainersItems container">
             <table className='moreTopGainersTable'>
 

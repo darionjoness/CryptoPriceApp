@@ -93,20 +93,82 @@ input[type=number]::-webkit-outer-spin-button {
   padding-bottom: 10px;
 }
 
+.viewCryptosDiv{
+  padding-bottom: 10px;
+}
+
+.viewCryptosDiv.active{
+  border-bottom: 2px solid var(--third-color);
+}
+
 .viewCryptos.active{
   color: var(--third-color);
+  border-bottom: 2px solid var(--third-color);
+  text-decoration: none;
+}
+
+.viewCryptos.notActive{
+  color: #fff;
+  text-decoration: none;
+}
+
+.viewWalletDiv{
+  padding-bottom: 10px;
+}
+
+.viewWalletDiv.active{
   border-bottom: 2px solid var(--third-color);
 }
 
 .viewWallet.active{
   color: var(--third-color);
   border-bottom: 2px solid var(--third-color);
+  text-decoration: none;
+}
+
+.viewWallet.notActive{
+  color: #fff;
+  text-decoration: none;
+}
+
+.viewExchangeDiv{
+  padding-bottom: 10px;
+}
+
+.viewExchangeDiv.active{
+  border-bottom: 2px solid var(--third-color);
 }
 
 .viewExchange.active{
   color: var(--third-color);
   border-bottom: 2px solid var(--third-color);
+  text-decoration: none;
 }
+
+.viewExchange.notActive{
+  color: #fff;
+  text-decoration: none;
+}
+
+.viewTransactionsDiv{
+  padding-bottom: 10px;
+}
+
+.viewTransactionsDiv.active{
+  border-bottom: 2px solid var(--third-color);
+}
+
+.viewTransactions.active{
+  color: var(--third-color);
+  border-bottom: 2px solid var(--third-color);
+  text-decoration: none;
+}
+
+.viewTransactions.notActive{
+  color: #fff;
+  text-decoration: none;
+}
+
 
 .viewTransactions.active{
   color: var(--third-color);
@@ -197,7 +259,7 @@ input[type=number]::-webkit-outer-spin-button {
   justify-content: space-between;
 }
 
-.topGainersHeader button{
+.topGainersHeader .topGainersMore{
   background-color: transparent;
   border: none;
   color: #fff;
@@ -245,16 +307,9 @@ input[type=number]::-webkit-outer-spin-button {
 
 .moreTopGainers{
   background-color: var(--primary-color);
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  height: 100%;
-  width: 100%;
   z-index: 10;
   color: #fff;
-  overflow-y: scroll;
-  padding: 50px 0;
+  padding-bottom: 30px;
 }
 
 .moreTopGainersHeader{
@@ -292,23 +347,6 @@ input[type=number]::-webkit-outer-spin-button {
   color: lightgray;
 }
 
-.closeMoreTopGainers{
-  background-color: transparent;
-  border: 1px solid var(--third-color);
-  color: #fff;
-  font-size: 2rem;
-  display: flex;
-  border-radius: 5px;
-  cursor: pointer;
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  transition: all 0.25s ease;
-}
-
-.closeMoreTopGainers:hover{
-  background-color: var(--third-color);
-}
 
 .moreTopGainersPercent p{
   color: #00FF00;
