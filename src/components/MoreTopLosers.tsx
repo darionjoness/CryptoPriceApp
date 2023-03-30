@@ -1,5 +1,4 @@
 import React from 'react'
-import { AiOutlineClose } from "react-icons/ai";
 
 interface CoinDataTypes {
     changePercent24Hr: string
@@ -16,16 +15,16 @@ interface CoinDataTypes {
     vwap24Hr: string
 }
 
-interface MoreTopGainersTypes {
-    topTenGainers: CoinDataTypes[]
+interface MoreTopLosers {
+    topTenLosers: CoinDataTypes[]
 }
 
-const MoreTopGainers = ({ topTenGainers }: MoreTopGainersTypes) => {
+const MoreTopLosers = ({ topTenLosers }: MoreTopLosers) => {
   return (
-    <div className='moreTopGainers'>
-        <h1 className='moreTopGainersHeader'>Top Ten Gainers</h1>
-        <div className="moreTopGainersItems container">
-            <table className='moreTopGainersTable'>
+    <div className='moreTopLosers'>
+        <h1 className='moreTopLosersHeader'>Top Ten Losers</h1>
+        <div className="moreTopLosersItems container">
+            <table className='moreTopLosersTable'>
 
                 <thead>
                     <tr>
@@ -47,21 +46,21 @@ const MoreTopGainers = ({ topTenGainers }: MoreTopGainersTypes) => {
                     </tr>
                 </thead>
 
-            {topTenGainers.map((item, idx) => (
-                <tbody key={item.rank} className='moreTopTenGainersBody'>
+            {topTenLosers.map((item, idx) => (
+                <tbody key={item.rank} className='moreTopTenLosersBody'>
                     <tr>
                         <td>
                             <h3>{idx + 1}</h3>
                         </td>
-                        <td className='moreTopGainersCoinTitle'>
+                        <td className='moreTopLosersCoinTitle'>
                             <h3>{item.name}</h3>
                             <h5>{item.symbol}</h5>
                         </td>
                         <td>
                             <p>${Number(item.priceUsd).toFixed(4)}</p>
                         </td>
-                        <td className='moreTopGainersPercent'>
-                            <p>+{Number(item.changePercent24Hr).toFixed(4)}%</p>
+                        <td className='moreTopLosersPercent'>
+                            <p>{Number(item.changePercent24Hr).toFixed(4)}%</p>
                         </td>
                         <td>
                             <p>${Number(item.volumeUsd24Hr).toLocaleString()}</p>
@@ -75,4 +74,4 @@ const MoreTopGainers = ({ topTenGainers }: MoreTopGainersTypes) => {
   )
 }
 
-export default MoreTopGainers
+export default MoreTopLosers

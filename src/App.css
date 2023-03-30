@@ -352,6 +352,118 @@ input[type=number]::-webkit-outer-spin-button {
   color: #00FF00;
 }
 
+/* TOP LOSERS */
+
+.topLosers{
+  background-color: var(--third-color);
+  color: #fff;
+  width: 33%;
+  padding: 15px;
+  box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
+  border-radius: 5px;
+  margin-left: 20px;
+}
+
+.topLosersHeader{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.topLosersHeader .topLosersMore{
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.topLoser{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 5px 0;
+}
+
+.topLosers h2{
+  margin-bottom: 10px;
+}
+
+.topLoserTitle{
+  display: flex;
+  align-items: center;
+}
+
+
+.topLoserTitle h3{
+  font-weight: 600;
+  margin: 0 5px;
+}
+
+.topLoserTitle h5{
+  color: lightgray;
+}
+
+.topLoserPercent p{
+  color:red;
+}
+
+.topLosersViewMore{
+  text-align: right;
+}
+
+/* MORE TOP LOSERS */
+
+.moreTopLosers{
+  background-color: var(--primary-color);
+  z-index: 10;
+  color: #fff;
+  padding-bottom: 30px;
+}
+
+.moreTopLosersHeader{
+  text-align: center;
+  color: #fff;
+  margin: 20px 0;
+}
+
+.moreTopLosersTable{
+  border-collapse: collapse;
+  width: 100%;
+  text-align: center;
+}
+
+.moreTopLosersTable thead tr th{
+  padding-bottom: 20px;
+}
+
+.moreTopTenLosersBody tr{
+  border: 1px solid var(--third-color);
+  border-radius: 5px;
+}
+
+.moreTopTenLosersBody tr td{
+  padding: 25px 10px;
+}
+
+.moreTopLosersCoinTitle{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.moreTopLosersCoinTitle h5{
+  color: lightgray;
+}
+
+
+.moreTopLosersPercent p{
+  color: red;
+}
+
 
 /* COINS */
 
@@ -359,6 +471,11 @@ input[type=number]::-webkit-outer-spin-button {
   color: #fff;
   margin-bottom: 40px;
   text-align: center;
+}
+
+.topMovers{
+  display: flex;
+  justify-content: center;
 }
 
 
@@ -1109,6 +1226,10 @@ input[type=number]::-webkit-outer-spin-button {
 
 @media(max-width: 968px){
   .topGainers{
+    display: none;
+  }
+
+  .topLosers{
     display: none;
   }
 }

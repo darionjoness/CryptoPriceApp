@@ -4,6 +4,7 @@ import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
 import Pagination from './Pagination'
 import TopGainers from './TopGainers';
 import MoreTopGainers from './MoreTopGainers'
+import TopLosers from './TopLosers';
 
 interface CoinDataTypes {
     changePercent24Hr: string
@@ -25,9 +26,10 @@ interface CoinDataProps {
     searchInput: string
     onClick: React.MouseEventHandler
     topThreeGainers: CoinDataTypes[]
+    topThreeLosers: CoinDataTypes[]
 }
 
-function ReactSimplyCarouselExample({ coinData, searchInput, onClick, topThreeGainers }: CoinDataProps) {
+function ReactSimplyCarouselExample({ coinData, searchInput, onClick, topThreeGainers, topThreeLosers }: CoinDataProps) {
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [itemsPerPage, setItemsPerPage] = useState<number>(10);
@@ -66,7 +68,10 @@ function ReactSimplyCarouselExample({ coinData, searchInput, onClick, topThreeGa
 
   return (
     <div className='container'>
+      <div className="topMovers">
         <TopGainers topThreeGainers={topThreeGainers} />
+        <TopLosers topThreeLosers={topThreeLosers} />
+      </div>
       <h1 className='coinHeader'>Top Cryptocurrency prices by Market Cap</h1>
 
       {newCoinData.length > 0 ? <table className='coinTable'>

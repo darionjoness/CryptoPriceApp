@@ -17,6 +17,7 @@ import Sidebar from './components/Sidebar'
 import Exchanges from './components/Exchanges'
 import Transactions from './components/Transactions'
 import MoreTopGainers from './components/MoreTopGainers'
+import MoreTopLosers from './components/MoreTopLosers'
 
 // API Data is about a day off, it is not up to date to the exact minute 
 
@@ -250,11 +251,23 @@ function App() {
 
   // Copy coinData
   let coinDataCopy = [...coinData]
+  let losersCoinDataCopy = [...coinData]
       
   // Sort the coins by changePercent24Hr in descending order
   const sortedCoinData = coinDataCopy.sort(
     (a:any,b:any) => b.changePercent24Hr - a.changePercent24Hr
   )
+
+  // Sort the coins by changePercent24Hr in asscending order
+  const losersSortedCoinData = losersCoinDataCopy.sort(
+    (a:any,b:any) => a.changePercent24Hr - b.changePercent24Hr
+  )
+
+  // Slice the top three losers
+  const topThreeLosers = losersSortedCoinData.slice(0, 3)
+
+  // Slice the top 10 losers
+  const topTenLosers = losersSortedCoinData.slice(0, 10)
 
   //    Slice the top three gainers
   const topThreeGainers = sortedCoinData.slice(0, 3)
@@ -268,11 +281,12 @@ function App() {
       <Sidebar changeTab={changeTab} menuRef={menuRef} changeSection={changeSection} hideSidebar={showSidebar} viewSidebar={viewSidebar} />
 
       <Header showSidebar={showSidebar} />
+      
       <Routes>
 
         <Route path='/' element={
           <div className="sectionCoinInfo">
-          {isLoading ? <Loading type='spokes' color='#b74cf5' /> : <Coins topThreeGainers={topThreeGainers} coinData={coinData} searchInput={searchInput} onClick={clickChangeCoinHistory}/>}
+          {isLoading ? <Loading type='spokes' color='#b74cf5' /> : <Coins topThreeLosers={topThreeLosers} topThreeGainers={topThreeGainers} coinData={coinData} searchInput={searchInput} onClick={clickChangeCoinHistory}/>}
   
           {coinsFetched ? <CurrentCoinInfo coinData={coinData} currentDataRank={currentDataRank} currentCoinInfoLoading={currentCoinInfoLoading} /> : ''}
   
@@ -291,6 +305,10 @@ function App() {
         }/>
 
         <Route path='/topgainers' element={<MoreTopGainers topTenGainers={topTenGainers} />} />
+
+        <Route path='/toplosers' element={
+          <MoreTopLosers topTenLosers={topTenLosers} />
+        } />
       
         <Route path='/wallet' element={
           <div className="sectionMyAssets">
