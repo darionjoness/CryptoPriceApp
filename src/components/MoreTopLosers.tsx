@@ -1,4 +1,6 @@
 import React from 'react'
+import { FiChevronLeft } from "react-icons/fi";
+import { Link } from 'react-router-dom'
 
 interface CoinDataTypes {
     changePercent24Hr: string
@@ -22,6 +24,7 @@ interface MoreTopLosers {
 const MoreTopLosers = ({ topTenLosers }: MoreTopLosers) => {
   return (
     <div className='moreTopLosers'>
+        <Link className='container moreTopLosersBack' to={'/'}><FiChevronLeft /> Back</Link>
         <h1 className='moreTopLosersHeader'>Top Ten Losers</h1>
         <div className="moreTopLosersItems container">
             <table className='moreTopLosersTable'>

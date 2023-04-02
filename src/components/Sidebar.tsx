@@ -44,13 +44,11 @@ const Sidebar = ({ viewSidebar, hideSidebar, changeSection, menuRef, changeTab }
                     <p>Transactions</p>
                 </Link>
             </div>
-            <div className="sidebarLink viewAccount">
-                <p><IoPersonOutline /></p>
-                <p>Account</p>
-            </div>
-            <div className="sidebarLink viewFavorites">
-                <AiOutlineStar />
-                <p>Favorites</p>
+            <div className={`sidebarLink viewFavoritesDiv ${changeSection === 4 ? 'active' : ''}`}>
+                <Link className={`viewFavorites ${changeSection === 4 ? 'active' : 'notActive'}`} onClick={() => changeTab(4)} to={'/favorites'}>
+                    <AiOutlineStar />
+                    <p>Favorites</p>
+                </Link>
             </div>
         </div>
     </div>

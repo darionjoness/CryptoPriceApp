@@ -107,6 +107,7 @@ const data = {
       data: thirtyPriceLabels,
       borderColor: '#d4af37',
       backgroundColor: '#d4af37',
+      pointRadius: 0
     },
   ],
 };

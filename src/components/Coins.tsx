@@ -5,6 +5,7 @@ import Pagination from './Pagination'
 import TopGainers from './TopGainers';
 import MoreTopGainers from './MoreTopGainers'
 import TopLosers from './TopLosers';
+import FavoritesButton from './FavoritesButton'
 
 interface CoinDataTypes {
     changePercent24Hr: string
@@ -27,9 +28,14 @@ interface CoinDataProps {
     onClick: React.MouseEventHandler
     topThreeGainers: CoinDataTypes[]
     topThreeLosers: CoinDataTypes[]
+    addBookmark: any
+    removeBookmark: any
+    showFavMsg: boolean
+    alreadyAddedMsg: boolean
+    showRemoveFavMsg: boolean
 }
 
-function ReactSimplyCarouselExample({ coinData, searchInput, onClick, topThreeGainers, topThreeLosers }: CoinDataProps) {
+function ReactSimplyCarouselExample({ coinData, searchInput, onClick, topThreeGainers, topThreeLosers, addBookmark, removeBookmark, showFavMsg, alreadyAddedMsg, showRemoveFavMsg }: CoinDataProps) {
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [itemsPerPage, setItemsPerPage] = useState<number>(10);
@@ -74,7 +80,7 @@ function ReactSimplyCarouselExample({ coinData, searchInput, onClick, topThreeGa
       </div>
       <h1 className='coinHeader'>Top Cryptocurrency prices by Market Cap</h1>
 
-      {newCoinData.length > 0 ? <table className='coinTable'>
+      {newCoinData.length > 0 ? <table cellSpacing={'0'} cellPadding={'0'} className='coinTable'>
 
         <thead>
           <tr>
@@ -93,7 +99,12 @@ function ReactSimplyCarouselExample({ coinData, searchInput, onClick, topThreeGa
         .map((item, idx) => (
           <tbody key={item.id} className='coinBody'>
           <tr>
-            <td><p>{item.rank}</p></td>
+              <td>
+                <p className='favBtn'><FavoritesButton onRemoveBookmark={() => removeBookmark(item)} onAddBookmark={() => addBookmark(item)} /></p>
+                <p className='coinRank'>
+                  {item.rank}
+                </p>
+              </td>
               <td>
                   <span className='coinTitle'>{item.name}</span>
                   <span className='coinSymbol'>{item.symbol}</span>
@@ -137,6 +148,9 @@ function ReactSimplyCarouselExample({ coinData, searchInput, onClick, topThreeGa
       
             }
           <Pagination totalPages={totalPages} currentPage={currentPage} onPageChange={handlePageChange} />
+          {showFavMsg ? <h3 className='favAdded'>Favorite Added!</h3> : ''}
+          {alreadyAddedMsg ? <h3 className='alreadyAdded'>Already Added!</h3> : ''}
+          {showRemoveFavMsg ? <h3 className='favRemoved'>Favorite Removed!</h3> : ''}
     </div>
   )
 }

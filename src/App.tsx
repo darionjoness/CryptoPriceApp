@@ -18,6 +18,7 @@ import Exchanges from './components/Exchanges'
 import Transactions from './components/Transactions'
 import MoreTopGainers from './components/MoreTopGainers'
 import MoreTopLosers from './components/MoreTopLosers'
+import Favorites from './components/Favorites'
 
 // API Data is about a day off, it is not up to date to the exact minute 
 
@@ -47,6 +48,10 @@ function App() {
 
   const [addFundsErr, setAddFundsErr] = useState<boolean>(false)
   const [negativeNumErr, setNegativeNumErr] = useState<boolean>(false)
+  const [favorites, setFavorites] = useState<any>([])
+  const [showFavMsg, setShowFavMsg] = useState<boolean>(false)
+  const [alreadyAddedMsg, setAlreadyAddedMsg] = useState<boolean>(false)
+  const [showRemoveFavMsg, setShowRemoveFavMsg] = useState<boolean>(false)
 
   useEffect(() => {
     fetchCoins();
@@ -275,6 +280,48 @@ function App() {
   // Slice the top 10 gainers
   const topTenGainers = sortedCoinData.slice(0, 10)
 
+
+  // Create addBookmark function
+  const addBookmark = (item: any) => {
+    // Check if favorites includes the item passed through
+    if(favorites.includes(item)){
+      // setAlreadyAddedMsg to true
+      setAlreadyAddedMsg(true)
+
+      // setAlreadyAddedMsg to false after 2000ms (2s)
+      setTimeout(() => {
+        setAlreadyAddedMsg(false)
+      }, 2000)
+    }else{
+      // Add item to favorites state
+      setFavorites([...favorites, item])
+      // setShowFavMsg to true
+      setShowFavMsg(true)
+
+      // setShowFavMsg to false after 2000ms (2s)
+    setTimeout(() => {
+      setShowFavMsg(false)
+    }, 2000)
+    }
+  }
+
+  // Create removeBookmark function
+  const removeBookmark = (item: any) => {
+    // Check if favorites includes the item passed through
+    if(favorites.includes(item)){
+      // Remove item from the favorites state
+      setFavorites(favorites.filter((favorite: any) => item != favorite))
+    
+      // setShowRemoveFavMsg to true
+      setShowRemoveFavMsg(true)
+  
+      // setShowRemoveFavMsg to false after 2000ms (2s)
+      setTimeout(() => {
+        setShowRemoveFavMsg(false)
+      }, 2000 )
+    }
+  }
+
   return (
     <div className="app">
 
@@ -286,7 +333,7 @@ function App() {
 
         <Route path='/' element={
           <div className="sectionCoinInfo">
-          {isLoading ? <Loading type='spokes' color='#d4af37' /> : <Coins topThreeLosers={topThreeLosers} topThreeGainers={topThreeGainers} coinData={coinData} searchInput={searchInput} onClick={clickChangeCoinHistory}/>}
+          {isLoading ? <Loading type='spokes' color='#d4af37' /> : <Coins showRemoveFavMsg={showRemoveFavMsg} alreadyAddedMsg={alreadyAddedMsg} showFavMsg={showFavMsg} addBookmark={addBookmark} removeBookmark={removeBookmark} topThreeLosers={topThreeLosers} topThreeGainers={topThreeGainers} coinData={coinData} searchInput={searchInput} onClick={clickChangeCoinHistory}/>}
   
           {coinsFetched ? <CurrentCoinInfo coinData={coinData} currentDataRank={currentDataRank} currentCoinInfoLoading={currentCoinInfoLoading} /> : ''}
   
@@ -342,6 +389,10 @@ function App() {
 
         <Route path='/transactions' element={
           <Transactions transactions={transactions} />
+        } />
+
+        <Route path='favorites' element={
+          <Favorites favorites={favorites} />
         } />
 
       </Routes>

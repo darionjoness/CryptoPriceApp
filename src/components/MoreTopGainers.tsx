@@ -1,5 +1,7 @@
 import React from 'react'
 import { AiOutlineClose } from "react-icons/ai";
+import { Link } from 'react-router-dom'
+import { FiChevronLeft } from "react-icons/fi";
 
 interface CoinDataTypes {
     changePercent24Hr: string
@@ -23,6 +25,7 @@ interface MoreTopGainersTypes {
 const MoreTopGainers = ({ topTenGainers }: MoreTopGainersTypes) => {
   return (
     <div className='moreTopGainers'>
+        <Link className='container moreTopGainersBack' to={'/'}><FiChevronLeft /> Back</Link>
         <h1 className='moreTopGainersHeader'>Top Ten Gainers</h1>
         <div className="moreTopGainersItems container">
             <table className='moreTopGainersTable'>
