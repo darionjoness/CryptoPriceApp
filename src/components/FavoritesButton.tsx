@@ -42,7 +42,7 @@ const Menu: React.FC<Props> = ({ onAddBookmark, onRemoveBookmark }) => {
             Add to Bookmarks
           </button>
           <button className="remove-bookmark" onClick={onRemoveBookmark}>
-            Remove Bookmarks
+            Remove Bookmark
           </button>
         </div>
       )}
