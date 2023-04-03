@@ -1,6 +1,6 @@
 import './App.css'
 import React, { useState, useEffect, useRef } from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useNavigate } from 'react-router-dom'
 import Header from './components/Header'
 import SearchBar from './components/SearchBar'
 import Coins from './components/Coins'
@@ -52,6 +52,7 @@ function App() {
   const [showFavMsg, setShowFavMsg] = useState<boolean>(false)
   const [alreadyAddedMsg, setAlreadyAddedMsg] = useState<boolean>(false)
   const [showRemoveFavMsg, setShowRemoveFavMsg] = useState<boolean>(false)
+  const [currentExchangeInfo, setCurrentExchangeInfo] = useState()
 
   useEffect(() => {
     fetchCoins();
@@ -322,6 +323,7 @@ function App() {
     }
   }
 
+
   return (
     <div className="app">
 
@@ -386,6 +388,7 @@ function App() {
         <Route path='/exchanges' element={
           <Exchanges />
         } />
+
 
         <Route path='/transactions' element={
           <Transactions transactions={transactions} />

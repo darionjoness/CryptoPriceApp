@@ -1,12 +1,18 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import ExchangesMarketShare from './ExchangesMarketShare'
 import Loading from './Loading'
 import SearchBar from './SearchBar'
+
 
 const Exchanges = () => {
     const [exchangesData, setExchangesData] = useState<any[]>([])
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const [searchInput, setSearchInput] = useState<string>('')
+    const [changeView, setChangeView] = useState<boolean>(false)
+
+    console.log(exchangesData)
 
     let newExchangesData = exchangesData
         // Filter through exchangesData
@@ -39,10 +45,15 @@ const Exchanges = () => {
     }
 
   return (
-    <div className='exchanges'>
+    <div className='exchanges container'>
         <h1 className='exchangesHeader'>Top Exchanges</h1>
+        <div className="exchangeInfoBtns">
+            <button onClick={() => setChangeView(false)}>Exchanges</button>
+            <button onClick={() => setChangeView(true)}>Exchanges Market Share</button>
+        </div>
+        {changeView ? <ExchangesMarketShare exchangesData={exchangesData} /> : <div>
         <SearchBar placeholder={'🔍  Search Exchange'} onChange={(e) => setSearchInput(e.target.value)} />
-        {isLoading ? <Loading type='spokes' color='#d4af37' /> :<div className="exchangesItems container">
+        {isLoading ? <Loading type='spokes' color='#d4af37' /> :<div className="exchangesItems">
             {newExchangesData.length > 0 ? <table className='exchangeTable'>
                 <thead>
                     <tr>
@@ -55,7 +66,7 @@ const Exchanges = () => {
                 </thead>
                 {newExchangesData.map((item, idx) => (
                     <tbody className='exchangeBody' key={item.rank}>
-                        <tr>
+                        <tr className='exchangeRow'>
                             <td>
                                 <p>{item.rank}</p>
                             </td>
@@ -75,6 +86,7 @@ const Exchanges = () => {
                     </tbody>
                 ))}
             </table> : <h2 className='noExchanges'>No Exchanges matching this name!</h2>}
+        </div>}
         </div>}
     </div>
   )

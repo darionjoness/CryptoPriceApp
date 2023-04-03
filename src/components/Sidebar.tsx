@@ -45,7 +45,7 @@ const Sidebar = ({ viewSidebar, hideSidebar, changeSection, menuRef, changeTab }
                 </Link>
             </div>
             <div className={`sidebarLink viewFavoritesDiv ${changeSection === 4 ? 'active' : ''}`}>
-                <Link className={`viewFavorites ${changeSection === 4 ? 'active' : 'notActive'}`} onClick={() => changeTab(4)} to={'/favorites'}>
+                <Link onClick={() => changeTab(4)} className={`viewFavorites ${changeSection === 4 ? 'active' : 'notActive'}`} to={'/favorites'}>
                     <AiOutlineStar />
                     <p>Favorites</p>
                 </Link>
