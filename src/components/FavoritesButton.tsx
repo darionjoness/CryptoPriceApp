@@ -39,10 +39,10 @@ const Menu: React.FC<Props> = ({ onAddBookmark, onRemoveBookmark }) => {
       {showMenu && (
         <div className="menu-items">
           <button className="add-bookmark" onClick={onAddBookmark}>
-            Add to Bookmarks
+            Add to Favorites
           </button>
           <button className="remove-bookmark" onClick={onRemoveBookmark}>
-            Remove Bookmark
+            Remove Favorite
           </button>
         </div>
       )}
