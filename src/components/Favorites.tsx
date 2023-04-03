@@ -18,14 +18,19 @@ interface CoinDataTypes {
 
 interface FavoritesTypes {
     favorites: CoinDataTypes[]
+    addBookmark: any
+    removeBookmark: any
+    showFavMsg: boolean
+    showRemoveFavMsg: boolean
+    alreadyAddedMsg: boolean
 }
 
-const Favorites = ({ favorites}: FavoritesTypes) => {
+const Favorites = ({ favorites, addBookmark, removeBookmark, showFavMsg, showRemoveFavMsg, alreadyAddedMsg}: FavoritesTypes) => {
   return (
     <div className='favorites'>
         <h1 className='favoritesHeader'>Favorites</h1>
         <div className="favoritesItems container">
-        {favorites.length > 0 ? <table cellSpacing={'0'} cellPadding={'0'} className='coinTable'>
+        {favorites.length > 0 ? <table className='coinTable'>
 
 <thead>
   <tr>
@@ -44,6 +49,7 @@ const Favorites = ({ favorites}: FavoritesTypes) => {
   <tbody key={item.id} className='coinBody'>
   <tr>
       <td>
+        <p className='favBtn'><FavoritesButton onRemoveBookmark={() => removeBookmark(item)} onAddBookmark={() => addBookmark(item)} /></p>
         <p>
           {item.rank}
         </p>
@@ -85,6 +91,9 @@ const Favorites = ({ favorites}: FavoritesTypes) => {
 </table> : <h2 className='noCoins'>No favorites added yet. Add them from the cryptos tab!</h2>
 
     }
+          {showFavMsg ? <h3 className='favAdded'>Favorite Added!</h3> : ''}
+          {alreadyAddedMsg ? <h3 className='alreadyAdded'>Already Added!</h3> : ''}
+          {showRemoveFavMsg ? <h3 className='favRemoved'>Favorite Removed!</h3> : ''}
         </div>
     </div>
   )

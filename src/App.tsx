@@ -291,7 +291,7 @@ function App() {
       // setAlreadyAddedMsg to false after 2000ms (2s)
       setTimeout(() => {
         setAlreadyAddedMsg(false)
-      }, 2000)
+      }, 1000)
     }else{
       // Add item to favorites state
       setFavorites([...favorites, item])
@@ -301,7 +301,7 @@ function App() {
       // setShowFavMsg to false after 2000ms (2s)
     setTimeout(() => {
       setShowFavMsg(false)
-    }, 2000)
+    }, 1000)
     }
   }
 
@@ -318,7 +318,7 @@ function App() {
       // setShowRemoveFavMsg to false after 2000ms (2s)
       setTimeout(() => {
         setShowRemoveFavMsg(false)
-      }, 2000 )
+      }, 1000 )
     }
   }
 
@@ -392,8 +392,8 @@ function App() {
         } />
 
         <Route path='favorites' element={
-          <Favorites favorites={favorites} />
-        } />
+          <Favorites showFavMsg={showFavMsg} showRemoveFavMsg={showRemoveFavMsg} alreadyAddedMsg={alreadyAddedMsg} removeBookmark={removeBookmark} addBookmark={addBookmark} favorites={favorites} />
+        } /> 
 
       </Routes>
 
