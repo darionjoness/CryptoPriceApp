@@ -1,6 +1,7 @@
 import React from 'react'
 import { FiChevronLeft } from "react-icons/fi";
 import { Link } from 'react-router-dom'
+import FavoritesButton from './FavoritesButton'
 
 interface CoinDataTypes {
     changePercent24Hr: string
@@ -19,9 +20,14 @@ interface CoinDataTypes {
 
 interface MoreTopLosers {
     topTenLosers: CoinDataTypes[]
+    removeBookmark: any
+    addBookmark: any
+    showFavMsg: boolean
+    showRemoveFavMsg: boolean
+    alreadyAddedMsg: boolean
 }
 
-const MoreTopLosers = ({ topTenLosers }: MoreTopLosers) => {
+const MoreTopLosers = ({ topTenLosers, removeBookmark, addBookmark, showFavMsg, showRemoveFavMsg, alreadyAddedMsg }: MoreTopLosers) => {
   return (
     <div className='moreTopLosers'>
         <Link className='container moreTopLosersBack' to={'/'}><FiChevronLeft /> Back</Link>
@@ -53,7 +59,10 @@ const MoreTopLosers = ({ topTenLosers }: MoreTopLosers) => {
                 <tbody key={item.rank} className='moreTopTenLosersBody'>
                     <tr>
                         <td>
-                            <h3>{idx + 1}</h3>
+                        <p className='favBtn'>
+                            <FavoritesButton onRemoveBookmark={() => removeBookmark(item)} onAddBookmark={() => addBookmark(item)} />
+                            </p>
+                            <h3>{item.rank}</h3>
                         </td>
                         <td className='moreTopLosersCoinTitle'>
                             <h3>{item.name}</h3>
@@ -72,6 +81,9 @@ const MoreTopLosers = ({ topTenLosers }: MoreTopLosers) => {
                 </tbody>
             ))}
             </table>
+            {showFavMsg ? <h3 className='favAdded'>Favorite Added!</h3> : ''}
+          {alreadyAddedMsg ? <h3 className='alreadyAdded'>Already Added!</h3> : ''}
+          {showRemoveFavMsg ? <h3 className='favRemoved'>Favorite Removed!</h3> : ''}
         </div>
     </div>
   )

@@ -2,6 +2,7 @@ import React from 'react'
 import { AiOutlineClose } from "react-icons/ai";
 import { Link } from 'react-router-dom'
 import { FiChevronLeft } from "react-icons/fi";
+import FavoritesButton  from './FavoritesButton'
 
 interface CoinDataTypes {
     changePercent24Hr: string
@@ -20,9 +21,14 @@ interface CoinDataTypes {
 
 interface MoreTopGainersTypes {
     topTenGainers: CoinDataTypes[]
+    addBookmark: any
+    removeBookmark: any
+    showFavMsg: boolean
+    showRemoveFavMsg: boolean
+    alreadyAddedMsg: boolean
 }
 
-const MoreTopGainers = ({ topTenGainers }: MoreTopGainersTypes) => {
+const MoreTopGainers = ({ topTenGainers, addBookmark, removeBookmark, showFavMsg, showRemoveFavMsg, alreadyAddedMsg }: MoreTopGainersTypes) => {
   return (
     <div className='moreTopGainers'>
         <Link className='container moreTopGainersBack' to={'/'}><FiChevronLeft /> Back</Link>
@@ -54,7 +60,8 @@ const MoreTopGainers = ({ topTenGainers }: MoreTopGainersTypes) => {
                 <tbody key={item.rank} className='moreTopTenGainersBody'>
                     <tr>
                         <td>
-                            <h3>{idx + 1}</h3>
+                            <p className='favBtn'><FavoritesButton onRemoveBookmark={() => removeBookmark(item)} onAddBookmark={() => addBookmark(item)} /></p>
+                            <h3>{item.rank}</h3>
                         </td>
                         <td className='moreTopGainersCoinTitle'>
                             <h3>{item.name}</h3>
@@ -73,6 +80,9 @@ const MoreTopGainers = ({ topTenGainers }: MoreTopGainersTypes) => {
                 </tbody>
             ))}
             </table>
+            {showFavMsg ? <h3 className='favAdded'>Favorite Added!</h3> : ''}
+          {alreadyAddedMsg ? <h3 className='alreadyAdded'>Already Added!</h3> : ''}
+          {showRemoveFavMsg ? <h3 className='favRemoved'>Favorite Removed!</h3> : ''}
         </div>
     </div>
   )

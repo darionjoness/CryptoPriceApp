@@ -353,10 +353,10 @@ function App() {
         </div>
         }/>
 
-        <Route path='/topgainers' element={<MoreTopGainers topTenGainers={topTenGainers} />} />
+        <Route path='/topgainers' element={<MoreTopGainers alreadyAddedMsg={alreadyAddedMsg} showRemoveFavMsg={showRemoveFavMsg} showFavMsg={showFavMsg}  addBookmark={addBookmark} removeBookmark={removeBookmark} topTenGainers={topTenGainers} />} />
 
         <Route path='/toplosers' element={
-          <MoreTopLosers topTenLosers={topTenLosers} />
+          <MoreTopLosers showFavMsg={showFavMsg} showRemoveFavMsg={showRemoveFavMsg} alreadyAddedMsg={alreadyAddedMsg} removeBookmark={removeBookmark} addBookmark={addBookmark} topTenLosers={topTenLosers} />
         } />
       
         <Route path='/wallet' element={
