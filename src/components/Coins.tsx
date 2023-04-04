@@ -80,7 +80,7 @@ function ReactSimplyCarouselExample({ coinData, searchInput, onClick, topThreeGa
       </div>
       <h1 className='coinHeader'>Top Cryptocurrency prices by Market Cap</h1>
 
-      {newCoinData.length > 0 ? <table cellSpacing={'0'} cellPadding={'0'} className='coinTable'>
+      {newCoinData.length > 0 ? <table className='coinTable'>
 
         <thead>
           <tr>
@@ -137,6 +137,9 @@ function ReactSimplyCarouselExample({ coinData, searchInput, onClick, topThreeGa
             <button value={item.rank} id={item.id} onClick={(e) => onClick(e)} className='viewChartBtn'>
                 View Stats
             </button>
+            </td>
+            <td className='addToFavMobileBtn'>
+              <button onClick={() => addBookmark(item)}>Add to favorites</button>
             </td>
           </tr>
           </tbody>

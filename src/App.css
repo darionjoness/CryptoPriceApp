@@ -660,6 +660,10 @@ input[type=number]::-webkit-outer-spin-button {
   z-index: 100;
 }
 
+.addToFavMobileBtn{
+  display: none;
+}
+
 
 /* PAGINATION */
 
@@ -1168,6 +1172,48 @@ input[type=number]::-webkit-outer-spin-button {
   padding-bottom: 40px !important;
 }
 
+.removeFavMobileBtn{
+  display: none;
+}
+
+
+.favoritesRank{
+  margin-top: -20px;
+}
+
+
+.favoritesTable thead tr th{
+  padding-bottom: 20px;
+}
+
+.favoritesTable{
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  text-align: center;
+  font-size: 1.1rem;
+  color: #fff;
+}
+
+.favoritesBody tr{
+  border: 1px solid var(--third-color);
+  border-radius: 5px;
+}
+
+.favoritesBody tr td{
+  padding: 25px 10px;
+}
+
+
+.favoritesTitle{
+  font-size: 1.5rem;
+}
+
+.favoritesSymbol{
+  color: lightgray;
+  font-size: 0.9rem;
+}
+
 
 /* UTILITIES */
 .container{
@@ -1177,9 +1223,7 @@ input[type=number]::-webkit-outer-spin-button {
   overflow: hidden;
 }
 
-.favorites{
-  margin-bottom: 40px;
-}
+
 
 
 
@@ -1321,6 +1365,8 @@ input[type=number]::-webkit-outer-spin-button {
 	.coinTable td:nth-of-type(5):before { content: "MCap"; }
 	.coinTable td:nth-of-type(6):before { content: "Volume"; }
 	.coinTable td:nth-of-type(7):before { content: "Stats"; }
+	.coinTable td:nth-of-type(8):before { content: "Favorite"; }
+
 
   /* Exchanges Table */
 
@@ -1403,7 +1449,49 @@ input[type=number]::-webkit-outer-spin-button {
   .moreTopGainersTable td:nth-of-type(3):before { content: "Price"; }
   .moreTopGainersTable td:nth-of-type(4):before { content: "24h %"; }
   .moreTopGainersTable td:nth-of-type(5):before { content: "Volume(24h)"; }
- 
+
+  /* Favorites Mobile Table */
+
+  .favoritesTable tr{
+    margin: 20px 0;
+  }
+
+  .favoritesTable table, thead, tbody, th, td, tr{
+    display: block;
+  }
+
+  .favoritesTable thead tr { 
+		display: none;
+	}
+
+  .favoritesTable tr{
+    border: 1px solid var(--third-color);
+  }
+
+  .favoritesTable td{
+    border: none;
+		position: relative;
+    text-align: right;
+    border-bottom: 1px solid var(--third-color);
+  }
+
+  .favoritesTable tr td{
+    padding: 10px;
+  }
+
+  .favoritesTable td:before{
+    position: absolute;
+		top: 6px;
+		left: 10px;
+  }
+
+  .favoritesTable td:nth-of-type(1):before { content: "Rank"; }
+  .favoritesTable td:nth-of-type(2):before { content: "Name"; }
+	.favoritesTable td:nth-of-type(3):before { content: "Price"; }
+	.favoritesTable td:nth-of-type(4):before { content: "24H %"; color: #fff; }
+	.favoritesTable td:nth-of-type(5):before { content: "MCap"; }
+	.favoritesTable td:nth-of-type(6):before { content: "Volume"; }
+	.favoritesTable td:nth-of-type(7):before { content: "Favorite"; }
 	
 
   /*  ADD FUNDS PAGES */
@@ -1417,6 +1505,31 @@ input[type=number]::-webkit-outer-spin-button {
   .confirmAddFundsBtn button{
     width: 300px;
   }
+
+  /* Add to fav mobile btn */
+
+  .addToFavMobileBtn{
+    display: block;
+  }
+
+  .addToFavMobileBtn button{
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .removeFavMobileBtn{
+    display: block;
+  }
+
+  .removeFavMobileBtn button{
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+  }
+  
   
 }
 

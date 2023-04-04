@@ -30,7 +30,7 @@ const Favorites = ({ favorites, addBookmark, removeBookmark, showFavMsg, showRem
     <div className='favorites'>
         <h1 className='favoritesHeader'>Favorites</h1>
         <div className="favoritesItems container">
-        {favorites.length > 0 ? <table className='coinTable'>
+        {favorites.length > 0 ? <table className='favoritesTable'>
 
 <thead>
   <tr>
@@ -46,7 +46,7 @@ const Favorites = ({ favorites, addBookmark, removeBookmark, showFavMsg, showRem
 
 {favorites
 .map((item, idx) => (
-  <tbody key={item.id} className='coinBody'>
+  <tbody key={item.id} className='favoritesBody'>
   <tr>
       <td>
         <p className='favBtn'><FavoritesButton onRemoveBookmark={() => removeBookmark(item)} onAddBookmark={() => addBookmark(item)} /></p>
@@ -55,11 +55,11 @@ const Favorites = ({ favorites, addBookmark, removeBookmark, showFavMsg, showRem
         </p>
       </td>
       <td>
-          <span className='coinTitle'>{item.name}</span>
-          <span className='coinSymbol'>{item.symbol}</span>
+          <span className='favoritesTitle'>{item.name}</span>
+          <span className='favoritesSymbol'>{item.symbol}</span>
       </td>
       <td>
-      <p className='coinPrice'>
+      <p className='favoritesPrice'>
         ${Number(item.priceUsd)
         .toLocaleString()}
       </p>
@@ -81,6 +81,9 @@ const Favorites = ({ favorites, addBookmark, removeBookmark, showFavMsg, showRem
     </td>
     <td>
       <p className='volume'>{` $${Number(item.volumeUsd24Hr).toLocaleString()}`}</p>
+    </td>
+    <td className='removeFavMobileBtn'>
+      <button onClick={() => removeBookmark(item)}>Remove Favorite</button>
     </td>
   </tr>
   </tbody>
