@@ -12,8 +12,6 @@ const Exchanges = () => {
     const [searchInput, setSearchInput] = useState<string>('')
     const [changeView, setChangeView] = useState<boolean>(false)
 
-    console.log(exchangesData)
-
     let newExchangesData = exchangesData
         // Filter through exchangesData
         .filter((item) => {
@@ -48,8 +46,8 @@ const Exchanges = () => {
     <div className='exchanges container'>
         <h1 className='exchangesHeader'>Top Exchanges</h1>
         <div className="exchangeInfoBtns">
-            <button onClick={() => setChangeView(false)}>Exchanges</button>
-            <button onClick={() => setChangeView(true)}>Exchanges Market Share</button>
+            <button className={`showExchangeBtn ${changeView ? '' : 'active'} `} onClick={() => setChangeView(false)}>Exchanges</button>
+            <button className={`showExchangeMarketShare ${changeView ? 'active' : ''}`} onClick={() => setChangeView(true)}>Exchanges Market Share</button>
         </div>
         {changeView ? <ExchangesMarketShare exchangesData={exchangesData} /> : <div>
         <SearchBar placeholder={'🔍  Search Exchange'} onChange={(e) => setSearchInput(e.target.value)} />

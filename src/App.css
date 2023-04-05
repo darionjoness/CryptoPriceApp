@@ -1116,6 +1116,14 @@ input[type=number]::-webkit-outer-spin-button {
   margin-top: 20px;
 }
 
+.showExchangeBtn.active{
+  background-color: var(--third-color);
+}
+
+.showExchangeMarketShare.active{
+  background-color: var(--third-color);
+}
+
 /* Exchange Marktet share */
 
 .exchangeMarketShare h1{
