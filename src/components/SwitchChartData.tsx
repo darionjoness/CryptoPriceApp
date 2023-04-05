@@ -2,39 +2,35 @@ import React from 'react'
 
 interface SwitchChartDataProps {
     currentChartDataTime: number
-    show24Hour: React.MouseEventHandler<HTMLButtonElement>
-    show7Day: React.MouseEventHandler<HTMLButtonElement>
-    show30Day: React.MouseEventHandler<HTMLButtonElement>
-    show3Month: React.MouseEventHandler<HTMLButtonElement>
-    show1Year: React.MouseEventHandler<HTMLButtonElement>
+    switchChartViews: any
 }
 
-const SwitchChartData = ({ currentChartDataTime, show24Hour, show7Day, show30Day, show3Month, show1Year }: SwitchChartDataProps) => {
+const SwitchChartData = ({ currentChartDataTime, switchChartViews }: SwitchChartDataProps) => {
   return (
     <div className='switchChartData container'>
         <div className="switchChartDataItems">
-            <button onClick={show24Hour} 
+            <button onClick={() => switchChartViews(0, 'h')} 
             className={`24h 
             ${currentChartDataTime === 0 
             ? 'active' : 'notActive'}`}>
                 24H
             </button>
 
-            <button onClick={show7Day} className={`7d 
+            <button onClick={() => switchChartViews(1, 'd')} className={`7d 
             ${currentChartDataTime === 1 
             ? 'active' 
             : 'notActive'}`}>
                 7D
             </button>
 
-            <button onClick={show30Day} className={`30d 
+            <button onClick={() => switchChartViews(2, 'd')} className={`30d 
             ${currentChartDataTime === 2 
             ? 'active' 
             : 'notActive'}`}>
                 30D
             </button>
 
-            <button onClick={show3Month} className={`3m 
+            <button onClick={() => switchChartViews(3, 'd')} className={`3m 
             ${currentChartDataTime === 3 
             ? 'active' 
             : 'notActive'}`}
@@ -42,7 +38,7 @@ const SwitchChartData = ({ currentChartDataTime, show24Hour, show7Day, show30Day
                 3M
             </button>
 
-            <button onClick={show1Year} className={`1y 
+            <button onClick={() => switchChartViews(4, 'd')} className={`1y 
             ${currentChartDataTime === 4 
             ? 'active' 
             : 'notActive'}`}>

@@ -52,7 +52,6 @@ function App() {
   const [showFavMsg, setShowFavMsg] = useState<boolean>(false)
   const [alreadyAddedMsg, setAlreadyAddedMsg] = useState<boolean>(false)
   const [showRemoveFavMsg, setShowRemoveFavMsg] = useState<boolean>(false)
-  const [currentExchangeInfo, setCurrentExchangeInfo] = useState()
 
   useEffect(() => {
     fetchCoins();
@@ -134,47 +133,15 @@ function App() {
   }
 
   // SWITCH CHARTS VIEWS
+  // Create switchChartViews function
+  const switchChartViews = (current: number, time: string) => {
+    // setCurrentChartDataTime to current
+    setCurrentChartDataTime(current)
 
-  // Show 24 hour chart
-  const show24Hour = () => {
-    // setCurrentChartDataTime to 0
-    setCurrentChartDataTime(0)
-
-    // Set timer interval to h to get hours
-    setTimeInterval('h')
+    // setTimeInterval to time
+    setTimeInterval(time)
   }
 
-  const show7Day = () => {
-    // setCurrentChartDataTime to 1
-    setCurrentChartDataTime(1)
-
-    // Set timer interval to d to get days
-    setTimeInterval('d')
-  }
-
-  const show30Day = () => {
-    // setCurrentChartDataTime to 2
-    setCurrentChartDataTime(2)
-
-    // setTimerInterval to do to get days
-    setTimeInterval('d')
-  }
-
-  const show3Month = () => {
-     // setCurrentChartDataTime to 3
-     setCurrentChartDataTime(3)
-
-     // setTimerInterval to do to get days
-     setTimeInterval('d')
-  }
-
-  const show1Year = () => {
-    // setCurrentChartDataTime to 4
-    setCurrentChartDataTime(4)
-
-    // setTimerInterval to do to get days
-    setTimeInterval('d')
-  }
 
   // Create changeTab function and pass through the number you would like to show
   const changeTab = (index: number) => {
@@ -339,7 +306,7 @@ function App() {
   
           {coinsFetched ? <CurrentCoinInfo coinData={coinData} currentDataRank={currentDataRank} currentCoinInfoLoading={currentCoinInfoLoading} /> : ''}
   
-          <SwitchChartData show1Year={show1Year} show3Month={show3Month} show30Day={show30Day} show7Day={show7Day} currentChartDataTime={currentChartDataTime} show24Hour={show24Hour} />
+          <SwitchChartData switchChartViews={switchChartViews} currentChartDataTime={currentChartDataTime} />
   
           <SevenDayChart currentCoinInfoLoading={currentCoinInfoLoading} currentChartDataTime={currentChartDataTime} byDayHistory={byDayHistory} coinHistoryId={coinHistoryId} />
   
