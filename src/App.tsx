@@ -306,11 +306,46 @@ function App() {
     }
   }
 
+  // grab data from local storage transactions
+  useEffect(() => {
+    const data = window.localStorage.getItem('transactions')
+    if(data !== null) setTransactions(JSON.parse(data))
+  }, [])
+
+  // Add transactions data to local storage 
+  useEffect(() => {
+    window.localStorage.setItem('transactions', JSON.stringify(transactions))
+  }, [transactions])
+
+  // grab data from local storage name
+  useEffect(() => {
+    const data = window.localStorage.getItem('name')
+    if(data !== null) setName(JSON.parse(data))
+  }, [])
+
+  // Add name data to local storage name
+  useEffect(() => {
+    window.localStorage.setItem('name', JSON.stringify(name))
+  }, [name])
+
+  // grab data from local storage amount
+  useEffect(() => {
+    const data = window.localStorage.getItem('amount')
+    if(data !== null) setAmount(JSON.parse(data))
+  }, [])
+
+  // Add amount data to local storage
+  useEffect(() => {
+    window.localStorage.setItem('amount', JSON.stringify(amount))
+  }, [amount])
+
+  // grab data from local storage favorites
   useEffect(() => {
     const data = window.localStorage.getItem('favorites')
     if(data !== null) setFavorites(JSON.parse(data))
   }, [])
 
+  // Add favorites data to local storage
   useEffect(() => {
     window.localStorage.setItem('favorites', JSON.stringify(favorites))
   }, [favorites])
