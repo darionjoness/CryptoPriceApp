@@ -1233,8 +1233,6 @@ input[type=number]::-webkit-outer-spin-button {
 
 
 
-
-
 @media(max-width: 1068px){
   .searchBar input{
     width: 300px;

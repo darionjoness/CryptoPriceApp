@@ -22,6 +22,21 @@ import Favorites from './components/Favorites'
 
 // API Data is about a day off, it is not up to date to the exact minute 
 
+interface CoinDataTypes {
+  changePercent24Hr: string
+  explorer: string
+  id: string
+  marketCapUsd: string
+  maxSupply: string
+  name: string
+  priceUsd: string
+  rank: string
+  supply: string
+  symbol: string
+  volumeUsd24Hr: string
+  vwap24Hr: string
+}
+
 function App() {
   const [coinData, setCoinData] = useState([])
   const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -52,6 +67,7 @@ function App() {
   const [showFavMsg, setShowFavMsg] = useState<boolean>(false)
   const [alreadyAddedMsg, setAlreadyAddedMsg] = useState<boolean>(false)
   const [showRemoveFavMsg, setShowRemoveFavMsg] = useState<boolean>(false)
+
 
   useEffect(() => {
     fetchCoins();
@@ -233,7 +249,7 @@ function App() {
 
   // Sort the coins by changePercent24Hr in asscending order
   const losersSortedCoinData = losersCoinDataCopy.sort(
-    (a:any,b:any) => a.changePercent24Hr - b.changePercent24Hr
+    (a: any,b:any) => a.changePercent24Hr - b.changePercent24Hr
   )
 
   // Slice the top three losers
@@ -250,7 +266,7 @@ function App() {
 
 
   // Create addBookmark function
-  const addBookmark = (item: any) => {
+  const addBookmark = (item: CoinDataTypes) => {
     // Check if favorites includes the item passed through
     if(favorites.includes(item)){
       // setAlreadyAddedMsg to true
@@ -274,7 +290,7 @@ function App() {
   }
 
   // Create removeBookmark function
-  const removeBookmark = (item: any) => {
+  const removeBookmark = (item: CoinDataTypes) => {
     // Check if favorites includes the item passed through
     if(favorites.includes(item)){
       // Remove item from the favorites state
@@ -289,6 +305,15 @@ function App() {
       }, 1000 )
     }
   }
+
+  useEffect(() => {
+    const data = window.localStorage.getItem('favorites')
+    if(data !== null) setFavorites(JSON.parse(data))
+  }, [])
+
+  useEffect(() => {
+    window.localStorage.setItem('favorites', JSON.stringify(favorites))
+  }, [favorites])
 
 
   return (
