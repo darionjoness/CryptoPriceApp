@@ -39,6 +39,7 @@ function ReactSimplyCarouselExample({ coinData, searchInput, onClick, topThreeGa
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [itemsPerPage, setItemsPerPage] = useState<number>(10);
+  const [toggleHideCoins, setToggleHideCoins] = useState<boolean>(false)
 
   let newCoinData = coinData
         // Filter through coinData
@@ -70,16 +71,25 @@ function ReactSimplyCarouselExample({ coinData, searchInput, onClick, topThreeGa
         // Slice out the startIndex and endIndex into a new array
         const itemsToDisplay = newCoinData.slice(startIndex, endIndex);
 
+        const toggleCoins = () => {
+          setToggleHideCoins(!toggleHideCoins)
+        }
 
 
   return (
     <div className='container'>
-      <div className="topMovers">
+      <div className="hideHighlightsBtn">
+        <h3>Hide Highlights</h3>
+        <label className="switch">
+          <input onClick={toggleCoins} type="checkbox"/>
+          <span className="slider round"></span>
+        </label>
+      </div>
+      {toggleHideCoins ? '' : <div className="topMovers">
         <TopGainers topThreeGainers={topThreeGainers} />
         <TopLosers topThreeLosers={topThreeLosers} />
-      </div>
+      </div>}
       <h1 className='coinHeader'>Top Cryptocurrency prices by Market Cap</h1>
-
       {newCoinData.length > 0 ? <table className='coinTable'>
 
         <thead>
