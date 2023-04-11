@@ -306,18 +306,6 @@ function App() {
     }
   }
 
-  // grab data from local storage transactions
-  useEffect(() => {
-    const data = window.localStorage.getItem('transactions')
-    if(data !== null) setTransactions(JSON.parse(data))
-  }, [])
-
-  // Add transactions data to local storage 
-  useEffect(() => {
-    window.localStorage.setItem('transactions', JSON.stringify(transactions))
-  }, [transactions])
-
-
   // grab data from local storage favorites
   useEffect(() => {
     const data = window.localStorage.getItem('favorites')
