@@ -19,6 +19,7 @@ import Transactions from './components/Transactions'
 import MoreTopGainers from './components/MoreTopGainers'
 import MoreTopLosers from './components/MoreTopLosers'
 import Favorites from './components/Favorites'
+import HeaderInfo from './components/HeaderInfo'
 
 // API Data is about a day off, it is not up to date to the exact minute 
 
@@ -324,6 +325,8 @@ function App() {
       <Sidebar changeTab={changeTab} menuRef={menuRef} changeSection={changeSection} hideSidebar={showSidebar} viewSidebar={viewSidebar} />
 
       <Header showSidebar={showSidebar} />
+
+      <HeaderInfo coinData={coinData} />
       
       <Routes>
 

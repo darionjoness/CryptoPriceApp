@@ -228,6 +228,48 @@ input[type=number]::-webkit-outer-spin-button {
   background-color: var(--third-color);
 }
 
+/* HEADER INFO */
+
+.headerInfo{
+  margin-bottom: 20px;
+}
+
+.headerInfoItems{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.totalCryptos{
+  color: #fff;
+}
+
+.totalCryptos span{
+  color: var(--third-color);
+  margin-left: 5px;
+  margin-right: 15px;
+}
+
+.totalMarketCap{
+  color: #fff;
+}
+
+.totalMarketCap span{
+  color: var(--third-color);
+  margin-left: 5px;
+  margin-right: 15px;
+}
+
+.volumeTotal{
+  color: #fff;
+}
+
+.volumeTotal span{
+  color: var(--third-color);
+  margin-left: 5px;
+  margin-right: 15px;
+}
 
 
 /* SEARCH BAR */
@@ -598,6 +640,10 @@ input:checked + .slider:before {
 
 .coinTable thead tr th{
   padding-bottom: 20px;
+}
+
+.rankTh{
+  cursor: pointer;
 }
 
 .coinTable{
@@ -1442,8 +1488,8 @@ input:checked + .slider:before {
   .coinTable td:nth-of-type(1):before { content: "Rank"; }
   .coinTable td:nth-of-type(2):before { content: "Name"; }
 	.coinTable td:nth-of-type(3):before { content: "Price"; }
-	.coinTable td:nth-of-type(4):before { content: "24H %"; color: #fff; }
-	.coinTable td:nth-of-type(5):before { content: "MCap"; }
+	.coinTable td:nth-of-type(5):before { content: "24H %"; color: #fff; }
+	.coinTable td:nth-of-type(4):before { content: "MCap"; }
 	.coinTable td:nth-of-type(6):before { content: "Volume"; }
 	.coinTable td:nth-of-type(7):before { content: "Stats"; }
 	.coinTable td:nth-of-type(8):before { content: "Favorite"; }
@@ -1647,6 +1693,14 @@ input:checked + .slider:before {
 
   .oneYearChart{
     height: 50vh;
+  }
+
+  .headerInfoItems{
+    flex-direction: column;
+  }
+
+  .headerInfoItems p{
+    margin: 5px 0;
   }
 }
 

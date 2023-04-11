@@ -6,6 +6,7 @@ import TopGainers from './TopGainers';
 import MoreTopGainers from './MoreTopGainers'
 import TopLosers from './TopLosers';
 import FavoritesButton from './FavoritesButton'
+import { BiChevronUp, BiChevronDown } from "react-icons/bi";
 
 interface CoinDataTypes {
     changePercent24Hr: string
@@ -40,6 +41,7 @@ function ReactSimplyCarouselExample({ coinData, searchInput, onClick, topThreeGa
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [itemsPerPage, setItemsPerPage] = useState<number>(10);
   const [toggleHideCoins, setToggleHideCoins] = useState<boolean>(false)
+  const [sortedCoins, setSortedCoins] = useState()
 
   let newCoinData = coinData
         // Filter through coinData
@@ -71,6 +73,8 @@ function ReactSimplyCarouselExample({ coinData, searchInput, onClick, topThreeGa
         // Slice out the startIndex and endIndex into a new array
         const itemsToDisplay = newCoinData.slice(startIndex, endIndex);
 
+
+        // HIDES HIGHLIGHTS
         const toggleCoins = () => {
           setToggleHideCoins(!toggleHideCoins)
         }
